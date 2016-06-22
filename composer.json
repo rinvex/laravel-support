@@ -49,9 +49,7 @@
     },
     "autoload": {
         "files": [
-            "src/Support/timezones.php",
-            "src/Support/helpers.php",
-            "src/Support/mimes.php"
+            "src/Support/helpers.php"
         ],
         "psr-4": {
             "Rinvex\\Support\\": "src/"

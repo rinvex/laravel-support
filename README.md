@@ -7,7 +7,7 @@
 [![VersionEye Dependencies](https://img.shields.io/versioneye/d/php/rinvex:support.svg?label=Dependencies&style=flat-square)](https://www.versioneye.com/php/rinvex:support/)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/support.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/support/)
 [![Code Climate](https://img.shields.io/codeclimate/github/rinvex/support.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/support)
-[![StyleCI](https://styleci.io/repos/49874431/shield)](https://styleci.io/repos/49874431)
+[![StyleCI](https://styleci.io/repos/60968880/shield)](https://styleci.io/repos/60968880)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/da6c0f03-ea00-46ed-8f7b-a20ee721cad5.svg?label=SensioLabs&style=flat-square)](https://insight.sensiolabs.com/projects/da6c0f03-ea00-46ed-8f7b-a20ee721cad5)
 
 
@@ -30,7 +30,7 @@
         - [`setValidationCustomAttributes()`, `getValidationCustomAttributes()`](#setvalidationcustomattributes-getvalidationcustomattributes)
         - [`setValidationBindings()`, `getValidationBindings()`](#setvalidationbindings-getvalidationbindings)
         - [`validate()`](#validate)
-    - [Support Helpers
+    - [Support Helpers](#support-helpers)
         - [`lower_case()`](#lower_case)
         - [`upper_case()`](#upper_case)
         - [`mimetypes()`](#mimetypes)
@@ -207,7 +207,7 @@ $this->setValidationBindings(['foo' => 'alpha']);
 $this->getValidationBindings();
 ```
 
-> **Note:** The `{{foo}}` variable was mentioned before in the previous section [`setValidationRules()`, `getValidationRules()`](#setValidationRules-getValidationRules), and it's time now to bind and resolve it. The validation rule now is processed as `required|email|alpha`. It's useful for some scenarios like verifying uniqueness and dynamic validation rules.
+> **Note:** The `{{foo}}` variable was mentioned before in the previous section [`setValidationRules()`, `getValidationRules()`](#setValidationRules-getValidationRules), and it's time now to bind and resolve it. The validation rule now is processed as `required|email|alpha` through the protected method `getBoundValidationRules`. It's useful for some scenarios like verifying uniqueness and dynamic validation rules.
 
 #### `validate()`
 

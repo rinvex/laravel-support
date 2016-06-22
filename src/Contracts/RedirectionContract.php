@@ -20,7 +20,7 @@ interface RedirectionContract
     /**
      * Return redirect response.
      *
-     * @param array       $arguments
+     * @param array $arguments
      * @param string|null $statusCode
      *
      * @return \Illuminate\Http\RedirectResponse

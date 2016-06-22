@@ -22,7 +22,7 @@ trait Redirectable
     /**
      * Return redirect response.
      *
-     * @param array       $arguments
+     * @param array $arguments
      * @param string|null $statusCode
      *
      * @return \Illuminate\Http\RedirectResponse
@@ -32,18 +32,24 @@ trait Redirectable
         $redirect   = redirect();
         $statusCode = $statusCode ?: isset($arguments['withErrors']) ? 422 : 200;
 
-        if ((request()->ajax() && ! request()->pjax()) || request()->wantsJson()) {
+        if ($this->isJsonable()) {
             return new JsonResponse($arguments['withErrors'] ?: $arguments['with'] ?: 'OK', $statusCode);
         }
 
         foreach ($arguments as $key => $value) {
-            if (in_array($key, ['home', 'back'])) {
-                $redirect = $redirect->{$key}();
-            } else {
-                $redirect = $redirect->{$key}($value);
-            }
+            $redirect = in_array($key, ['home', 'back']) ? $redirect->{$key}() : $redirect->{$key}($value);
         }
 
         return $redirect;
+    }
+
+    /**
+     * Check if the request requires Json response.
+     *
+     * @return bool
+     */
+    protected function isJsonable()
+    {
+        return (request()->ajax() && ! request()->pjax()) || request()->wantsJson();
     }
 }
