@@ -26,7 +26,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
-    class BasicController extends Controller implements ValidationContract, RedirectionContract
+class BasicController extends Controller implements ValidationContract, RedirectionContract
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, Validateable, Redirectable;
 
@@ -40,7 +40,7 @@ use Illuminate\Contracts\Validation\Factory as ValidationFactory;
     /**
      * Create a new basic controller instance.
      *
-     * @param  \Illuminate\Contracts\Auth\Factory  $auth
+     * @param \Illuminate\Contracts\Auth\Factory $auth
      *
      * @return void
      */
