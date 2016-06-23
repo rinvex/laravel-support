@@ -49,7 +49,7 @@ The best and easiest way to install this package is through [Composer](https://g
 
 ### Compatibility
 
-This package fully compatible with **Laravel** `5.1.*`, and `5.2.*`.
+This package fully compatible with **Laravel** `5.1.*`, `5.2.*`, and `5.3.*`.
 
 While this package tends to be framework-agnostic, it embraces Laravel culture and best practices to some extent. It's tested mainly with Laravel but you still can use it with other frameworks or even without any framework if you want.
 
@@ -57,13 +57,13 @@ While this package tends to be framework-agnostic, it embraces Laravel culture a
 
 ```json
 "php": ">=5.5.9",
-"illuminate/bus": "5.1.*|5.2.*",
-"illuminate/http": "5.1.*|5.2.*",
-"illuminate/support": "5.1.*|5.2.*",
-"illuminate/contracts": "5.1.*|5.2.*",
-"illuminate/validation": "5.1.*|5.2.*",
-"illuminate/routing": "5.1.*|5.2.*",
-"illuminate/auth": "5.1.*|5.2.*"
+"illuminate/bus": "5.1.*|5.2.*|5.3.*",
+"illuminate/http": "5.1.*|5.2.*|5.3.*",
+"illuminate/support": "5.1.*|5.2.*|5.3.*",
+"illuminate/contracts": "5.1.*|5.2.*|5.3.*",
+"illuminate/validation": "5.1.*|5.2.*|5.3.*",
+"illuminate/routing": "5.1.*|5.2.*|5.3.*",
+"illuminate/auth": "5.1.*|5.2.*|5.3.*"
 ```
 
 ### Require Package
