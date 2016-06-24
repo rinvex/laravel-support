@@ -8,7 +8,7 @@
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/support.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/support/)
 [![Code Climate](https://img.shields.io/codeclimate/github/rinvex/support.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/support)
 [![StyleCI](https://styleci.io/repos/60968880/shield)](https://styleci.io/repos/60968880)
-[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/da6c0f03-ea00-46ed-8f7b-a20ee721cad5.svg?label=SensioLabs&style=flat-square)](https://insight.sensiolabs.com/projects/da6c0f03-ea00-46ed-8f7b-a20ee721cad5)
+[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/21b922e5-faa9-4773-ac8e-5ab55229d36c.svg?label=SensioLabs&style=flat-square)](https://insight.sensiolabs.com/projects/21b922e5-faa9-4773-ac8e-5ab55229d36c)
 
 
 ## Table Of Contents
@@ -151,7 +151,7 @@ The `setValidationFactory` method sets the validation factory instance, while `g
 // Require validation contract
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
-// Inistantiate validator instance
+// Instantiate validator instance
 $validator = app(ValidationFactory::class);
 
 // Set the validation factory instance
