@@ -114,7 +114,7 @@ class FooController implements RedirectionContract
 
 Redirect users to the previous page with flash message:
 ```php
-return $this->redirect([
+return intend([
     'back' => true,
     'with' => ['status' => 'Action failed!'],
 ]);
@@ -122,7 +122,7 @@ return $this->redirect([
 
 Redirect users to the home page with flash error message:
 ```php
-return $this->redirect([
+return intend([
     'home'       => true,
     'withErrors' => ['no_permission' => 'Sorry, you do not have appropriate permissions!'],
 ]);
