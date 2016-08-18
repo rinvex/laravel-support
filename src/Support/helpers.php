@@ -113,7 +113,7 @@ if (! function_exists('array_search_recursive')) {
     {
         foreach ($haystack as $key => $value) {
             $current_key = $key;
-            if ($needle === $value OR (is_array($value) && array_search_recursive($needle, $value) !== false)) {
+            if ($needle === $value or (is_array($value) && array_search_recursive($needle, $value) !== false)) {
                 return $current_key;
             }
         }

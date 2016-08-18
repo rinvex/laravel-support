@@ -20,7 +20,7 @@ use Illuminate\Foundation\Http\FormRequest as BaseFormRequest;
 class FormRequest extends BaseFormRequest
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function getValidatorInstance()
     {
