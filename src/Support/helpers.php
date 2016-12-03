@@ -30,7 +30,7 @@ if (! function_exists('intend')) {
         $redirect   = redirect();
         $statusCode = $statusCode ?: isset($arguments['withErrors']) ? 422 : 200;
 
-        if ((request()->ajax() && ! request()->pjax()) || request()->wantsJson()) {
+        if (request()->expectsJson()) {
             return new JsonResponse($arguments['withErrors'] ?: $arguments['with'] ?: 'OK', $statusCode);
         }
 
