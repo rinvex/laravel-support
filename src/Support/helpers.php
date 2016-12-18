@@ -81,7 +81,7 @@ if (! function_exists('mimetypes')) {
      */
     function mimetypes()
     {
-        return json_decode(file_get_contents(__DIR__.'/../../resources/fixtures/mimetypes.json'), true);
+        return json_decode(file_get_contents(__DIR__.'/../../resources/data/mimetypes.json'), true);
     }
 }
 
@@ -96,7 +96,7 @@ if (! function_exists('timezones')) {
      */
     function timezones()
     {
-        return json_decode(file_get_contents(__DIR__.'/../../resources/fixtures/timezones.json'), true);
+        return json_decode(file_get_contents(__DIR__.'/../../resources/data/timezones.json'), true);
     }
 }
 
