@@ -23,6 +23,10 @@ engines:
         enabled: false
       CleanCode/BooleanArgumentFlag:
         enabled: false
+      CleanCode/StaticAccess:
+        enabled: false
+      Naming/ShortMethodName:
+        enabled: false
 ratings:
   paths:
   - "**.inc"
@@ -32,4 +36,7 @@ ratings:
   - "**.php"
   - "**.py"
   - "**.rb"
-exclude_paths: []
+exclude_paths:
+- "build/*"
+- "tests/*"
+- "vendor/*"

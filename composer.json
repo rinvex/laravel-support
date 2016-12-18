@@ -33,12 +33,12 @@
             "role": "Project Lead"
         },
         {
-            "name": "The Generous PHP Community",
+            "name": "The Generous Laravel Community",
             "homepage": "https://github.com/rinvex/support/contributors"
         }
     ],
     "require": {
-        "php": ">=5.5.9",
+        "php": "^7.0.0",
         "illuminate/bus": "5.1.*|5.2.*|5.3.*",
         "illuminate/http": "5.1.*|5.2.*|5.3.*",
         "illuminate/support": "5.1.*|5.2.*|5.3.*",
