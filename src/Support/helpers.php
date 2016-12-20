@@ -27,7 +27,7 @@ if (! function_exists('intend')) {
      */
     function intend(array $arguments, $statusCode = null)
     {
-        $redirect   = redirect();
+        $redirect = redirect(array_pull($arguments, 'url'));
         $statusCode = $statusCode ?: isset($arguments['withErrors']) ? 422 : 200;
 
         if (request()->expectsJson()) {
