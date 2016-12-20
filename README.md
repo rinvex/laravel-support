@@ -40,7 +40,7 @@ intend([
 
 The `lower_case` method converts the given string to lower-case:
 ```php
-$lowercaseStr = upper_case('THIS UPPER CASE TEXT WILL BE LOWER CASED');
+$lowercaseStr = lower_case('THIS UPPER CASE TEXT WILL BE LOWER CASED');
 ```
 
 ### `upper_case()`
