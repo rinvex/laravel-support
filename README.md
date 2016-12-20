@@ -3,14 +3,16 @@
 **Rinvex common** support helpers, contracts, and traits required by various Rinvex packages. Validator functionality, and basic controller included out-of-the-box.
 
 [![Packagist](https://img.shields.io/packagist/v/rinvex/support.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/support)
-[![License](https://img.shields.io/packagist/l/rinvex/support.svg?label=License&style=flat-square)](https://github.com/rinvex/support/blob/develop/LICENSE)
 [![VersionEye Dependencies](https://img.shields.io/versioneye/d/php/rinvex:support.svg?label=Dependencies&style=flat-square)](https://www.versioneye.com/php/rinvex:support/)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/support.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/support/)
 [![Code Climate](https://img.shields.io/codeclimate/github/rinvex/support.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/support)
-[![StyleCI](https://styleci.io/repos/60968880/shield)](https://styleci.io/repos/60968880)
+[![Travis](https://img.shields.io/travis/rinvex/support.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/support)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/21b922e5-faa9-4773-ac8e-5ab55229d36c.svg?label=SensioLabs&style=flat-square)](https://insight.sensiolabs.com/projects/21b922e5-faa9-4773-ac8e-5ab55229d36c)
+[![StyleCI](https://styleci.io/repos/60968880/shield)](https://styleci.io/repos/60968880)
+[![License](https://img.shields.io/packagist/l/rinvex/support.svg?label=License&style=flat-square)](https://github.com/rinvex/support/blob/develop/LICENSE)
 
-> **Note:** this package is just a support package for other Rinvex packages, which may not be useful on it's own, but contains some complementary geberic functionality and also may not respect SemVer.
+
+> **Note:** this package is just a support package for other Rinvex packages, which may not be useful on it's own, but contains some complementary generic functionality and also may not respect SemVer and break backward compatibility.
 
 
 ## Installation
