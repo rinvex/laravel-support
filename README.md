@@ -17,7 +17,7 @@
 
 ## Installation
 
-Install via `composer require rinvex/category`
+Install via `composer require rinvex/support`
 
 
 ## Usage
