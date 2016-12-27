@@ -13,6 +13,8 @@
  * Link:    https://rinvex.com
  */
 
+declare(strict_types=1);
+
 namespace Rinvex\Support\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest as BaseFormRequest;
