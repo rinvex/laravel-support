@@ -121,3 +121,45 @@ if (! function_exists('array_search_recursive')) {
         return false;
     }
 }
+
+if (! function_exists('array_trim_recursive')) {
+    /**
+     * Recursively trim elements of the given array.
+     *
+     * @param mixed $values
+     * @param string $charlist
+     *
+     * @return mixed
+     */
+    function array_trim_recursive($values, $charlist = " \t\n\r\0\x0B")
+    {
+        if (is_array($values)) {
+            return array_map('array_trim_recursive', $values);
+        }
+
+        return is_string($values) ? trim($values, $charlist) : $values;
+    }
+}
+
+if (! function_exists('array_filter_recursive')) {
+    /**
+     * Recursively filter empty strings and null elements of the given array.
+     *
+     * @param array $values
+     * @param bool $strOnly
+     *
+     * @return mixed
+     */
+    function array_filter_recursive($values, $strOnly = true)
+    {
+        foreach ($values as &$value) {
+            if (is_array($value)) {
+                $value = array_filter_recursive($value);
+            }
+        }
+
+        return ! $strOnly ? array_filter($values) : array_filter($values, function ($item) {
+            return ! is_null($item) && ! ((is_string($item) || is_array($item)) && empty($item));
+        });
+    }
+}
