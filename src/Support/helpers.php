@@ -128,7 +128,7 @@ if (! function_exists('array_trim_recursive')) {
     /**
      * Recursively trim elements of the given array.
      *
-     * @param mixed $values
+     * @param mixed  $values
      * @param string $charlist
      *
      * @return mixed
@@ -148,7 +148,7 @@ if (! function_exists('array_filter_recursive')) {
      * Recursively filter empty strings and null elements of the given array.
      *
      * @param array $values
-     * @param bool $strOnly
+     * @param bool  $strOnly
      *
      * @return mixed
      */
