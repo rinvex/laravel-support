@@ -90,7 +90,7 @@ if (! function_exists('mimetypes')) {
 if (! function_exists('timezones')) {
     /**
      * Get valid timezones.
-     * This list is based upon the timezone database version 2016.1.
+     * This list is based upon the timezone database version 2017.2.
      *
      * @see http://php.net/manual/en/timezones.php
      *
