@@ -5,6 +5,18 @@ declare(strict_types=1);
 use Illuminate\Support\Str;
 use Illuminate\Http\JsonResponse;
 
+if (! function_exists('domain')) {
+    /**
+     * Return domain host.
+     *
+     * @return string
+     */
+    function domain()
+    {
+        return parse_url(config('app.url'))['host'];
+    }
+}
+
 if (! function_exists('intend')) {
     /**
      * Return redirect response.
