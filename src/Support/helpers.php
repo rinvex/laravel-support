@@ -32,7 +32,7 @@ if (! function_exists('intend')) {
         $statusCode = $statusCode ?: isset($arguments['withErrors']) ? 422 : 200;
 
         if (request()->expectsJson()) {
-            return new JsonResponse($arguments['withErrors'] ?: $arguments['with'] ?: 'OK', $statusCode);
+            return new JsonResponse($arguments['withErrors'] ?? $arguments['with'] ?? 'OK', $statusCode);
         }
 
         foreach ($arguments as $key => $value) {
