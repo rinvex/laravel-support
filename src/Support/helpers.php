@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Str;
-use Illuminate\Http\JsonResponse;
 
 if (! function_exists('domain')) {
     /**
@@ -32,7 +31,7 @@ if (! function_exists('intend')) {
         $statusCode = $statusCode ?: isset($arguments['withErrors']) ? 422 : 200;
 
         if (request()->expectsJson()) {
-            return new JsonResponse($arguments['withErrors'] ?? $arguments['with'] ?? 'OK', $statusCode);
+            return response()->json($arguments['withErrors'] ?? $arguments['with'] ?? 'OK', $statusCode);
         }
 
         foreach ($arguments as $key => $value) {
