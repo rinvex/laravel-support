@@ -8,9 +8,7 @@ use Watson\Validating\ValidatingTrait as BaseValidatingTrait;
 
 trait ValidatingTrait
 {
-    use BaseValidatingTrait, UniqueInjector {
-        UniqueInjector::prepareUniqueRule insteadof BaseValidatingTrait;
-    }
+    use BaseValidatingTrait;
 
     /**
      * Register a validating event with the dispatcher.
