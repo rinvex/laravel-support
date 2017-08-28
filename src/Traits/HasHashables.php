@@ -21,7 +21,7 @@ trait HasHashables
      *
      * @param array $hashables
      *
-     * @return $this
+     * @return static
      */
     public function setHashables(array $hashables)
     {
