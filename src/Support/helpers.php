@@ -20,18 +20,18 @@ if (! function_exists('intend')) {
     /**
      * Return redirect response.
      *
-     * @param array       $arguments
-     * @param string|null $statusCode
+     * @param array $arguments
+     * @param int   $status
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    function intend(array $arguments, $statusCode = null)
+    function intend(array $arguments, int $status = 302)
     {
-        $redirect = redirect(array_pull($arguments, 'url'));
-        $statusCode = $statusCode ?: isset($arguments['withErrors']) ? 422 : 200;
+        $redirect = redirect(array_pull($arguments, 'url'), $status);
+        $status = $status ?: isset($arguments['withErrors']) ? 422 : 200;
 
         if (request()->expectsJson()) {
-            return response()->json($arguments['withErrors'] ?? $arguments['with'] ?? 'OK', $statusCode);
+            return response()->json($arguments['withErrors'] ?? $arguments['with'] ?? 'OK', $status);
         }
 
         foreach ($arguments as $key => $value) {
