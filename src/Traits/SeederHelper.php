@@ -31,14 +31,16 @@ trait SeederHelper
 
         $this->warn('Seeding: '.str_after($seeder, $this->laravel->basePath().'/'));
 
+        $ids = [];
+
         // Create new resources
         foreach (json_decode(file_get_contents($seeder), true) as $resource) {
-            $model->firstOrCreate(array_except($resource, $initialExclude), array_only($resource, $initialExclude));
+            $ids[] = $model->firstOrCreate(array_except($resource, $initialExclude), array_only($resource, $initialExclude))->getKey();
         }
 
         $this->info('Seeded: '.str_after($seeder, $this->laravel->basePath().'/'));
 
-        ! $callback || call_user_func($callback);
+        ! $callback || call_user_func($callback, $ids);
     }
 
     /**
