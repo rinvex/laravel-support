@@ -3,7 +3,6 @@
 **Rinvex common** support helpers, contracts, and traits required by various Rinvex packages. Validator functionality, and basic controller included out-of-the-box.
 
 [![Packagist](https://img.shields.io/packagist/v/rinvex/support.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/rinvex/support)
-[![VersionEye Dependencies](https://img.shields.io/versioneye/d/php/rinvex:support.svg?label=Dependencies&style=flat-square)](https://www.versioneye.com/php/rinvex:support/)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/support.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/support/)
 [![Code Climate](https://img.shields.io/codeclimate/github/rinvex/support.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/support)
 [![Travis](https://img.shields.io/travis/rinvex/support.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/support)
