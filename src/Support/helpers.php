@@ -28,7 +28,7 @@ if (! function_exists('intend')) {
     function intend(array $arguments, int $status = 302)
     {
         $redirect = redirect(array_pull($arguments, 'url'), $status);
-        $status = $status ?: isset($arguments['withErrors']) ? 422 : 200;
+        $status = $status ?: (isset($arguments['withErrors']) ? 422 : 200);
 
         if (request()->expectsJson()) {
             return response()->json($arguments['withErrors'] ?? $arguments['with'] ?? 'OK', $status);
