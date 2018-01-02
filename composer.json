@@ -38,7 +38,7 @@
         }
     ],
     "require": {
-        "php": "^7.0.0",
+        "php": "^7.1.0",
         "illuminate/bus": "~5.5.0",
         "illuminate/http": "~5.5.0",
         "illuminate/support": "~5.5.0",
