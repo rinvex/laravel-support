@@ -27,7 +27,7 @@ if (! function_exists('intend')) {
      */
     function intend(array $arguments, int $status = 302)
     {
-        $redirect = redirect(array_pull($arguments, 'url'), $status);
+        $redirect = redirect($url = array_pull($arguments, 'url'), $status);
         $status = $status ?: (isset($arguments['withErrors']) ? 422 : 200);
 
         if (request()->expectsJson()) {
@@ -38,7 +38,7 @@ if (! function_exists('intend')) {
             $redirect = in_array($key, ['home', 'back']) ? $redirect->{$key}() : $redirect->{$key}($value);
         }
 
-        return $redirect;
+        return $redirect->header('Turbolinks-Location', $url);
     }
 }
 
