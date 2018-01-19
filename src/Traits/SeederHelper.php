@@ -23,7 +23,7 @@ trait SeederHelper
      *
      * @return void
      */
-    protected function seedResources(Model $model, string $seeder, array $initialExclude = [], Closure $callback = null)
+    protected function seedResources(Model $model, string $seeder, array $initialExclude = [], Closure $callback = null): void
     {
         if (! file_exists($seeder)) {
             throw new Exception("Resources seeder file '{$seeder}' does NOT exist!");
