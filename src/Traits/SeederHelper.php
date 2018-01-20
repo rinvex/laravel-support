@@ -50,7 +50,7 @@ trait SeederHelper
      *
      * @return bool
      */
-    protected function ensureExistingDatabaseTables(string $package)
+    protected function ensureExistingDatabaseTables(string $package): bool
     {
         if (! $this->hasDatabaseTables($package)) {
             $package = explode('/', $package);
@@ -67,7 +67,7 @@ trait SeederHelper
      *
      * @return bool
      */
-    protected function hasDatabaseTables(string $package)
+    protected function hasDatabaseTables(string $package): bool
     {
         $package = explode('/', $package);
 

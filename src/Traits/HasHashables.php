@@ -11,7 +11,7 @@ trait HasHashables
      *
      * @return array|null
      */
-    public function getHashables()
+    public function getHashables(): ?array
     {
         return $this->hashables ?? null;
     }
