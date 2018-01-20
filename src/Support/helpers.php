@@ -27,18 +27,18 @@ if (! function_exists('intend')) {
      */
     function intend(array $arguments, int $status = 302)
     {
-        $redirect = redirect($url = array_pull($arguments, 'url'), $status)->header('Turbolinks-Location', $url);
+        $redirect = redirect($url = array_pull($arguments, 'url'), $status);
         $status = $status ?: (isset($arguments['withErrors']) ? 422 : 200);
 
         if (request()->expectsJson()) {
-            return response()->json($arguments['withErrors'] ?? $arguments['with'] ?? 'OK', $status);
+            return response()->json($arguments['withErrors'] ?? $arguments['with'] ?? 'OK', $status)->header('Turbolinks-Location', $url);
         }
 
         foreach ($arguments as $key => $value) {
             $redirect = in_array($key, ['home', 'back']) ? $redirect->{$key}() : $redirect->{$key}($value);
         }
 
-        return $redirect;
+        return $redirect->header('Turbolinks-Location', $url);
     }
 }
 
