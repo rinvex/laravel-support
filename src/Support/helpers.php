@@ -23,7 +23,7 @@ if (! function_exists('intend')) {
      * @param array $arguments
      * @param int   $status
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     function intend(array $arguments, int $status = 302)
     {
@@ -31,7 +31,8 @@ if (! function_exists('intend')) {
         $status = $status ?: (isset($arguments['withErrors']) ? 422 : 200);
 
         if (request()->expectsJson()) {
-            return response()->json($arguments['withErrors'] ?? $arguments['with'] ?? 'OK', $status)->header('Turbolinks-Location', $url);
+            $response = collect($arguments['withErrors'] ?? $arguments['with']);
+            return response()->json([$response->flatten()->first() ?? 'OK'], 200)->header('Turbolinks-Location', $url);
         }
 
         foreach ($arguments as $key => $value) {
