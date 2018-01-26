@@ -32,6 +32,7 @@ if (! function_exists('intend')) {
 
         if (request()->expectsJson()) {
             $response = collect($arguments['withErrors'] ?? $arguments['with']);
+
             return response()->json([$response->flatten()->first() ?? 'OK'], 200)->header('Turbolinks-Location', $url);
         }
 
