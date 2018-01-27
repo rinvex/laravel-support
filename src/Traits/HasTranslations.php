@@ -55,4 +55,18 @@ trait HasTranslations
 
         return $value;
     }
+
+    /**
+     * Convert the model's attributes to an array.
+     *
+     * @return array
+     */
+    public function attributesToArray()
+    {
+        $values = array_map(function ($attribute) {
+            return $this->getTranslation($attribute, config('app.locale')) ?: null;
+        }, $keys = $this->getTranslatableAttributes());
+
+        return array_replace(parent::attributesToArray(), array_combine($keys, $values));
+    }
 }
