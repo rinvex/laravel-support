@@ -1,46 +1,46 @@
 <?php
 
-/*
- * NOTICE OF LICENSE
- *
- * Part of the Rinvex Support Package.
- *
- * This source file is subject to The MIT License (MIT)
- * that is bundled with this package in the LICENSE file.
- *
- * Package: Rinvex Support Package
- * License: The MIT License (MIT)
- * Link:    https://rinvex.com
- */
-
 declare(strict_types=1);
 
 use Illuminate\Support\Str;
-use Illuminate\Http\JsonResponse;
+
+if (! function_exists('domain')) {
+    /**
+     * Return domain host.
+     *
+     * @return string
+     */
+    function domain()
+    {
+        return parse_url(config('app.url'))['host'];
+    }
+}
 
 if (! function_exists('intend')) {
     /**
      * Return redirect response.
      *
-     * @param array       $arguments
-     * @param string|null $statusCode
+     * @param array $arguments
+     * @param int   $status
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    function intend(array $arguments, $statusCode = null)
+    function intend(array $arguments, int $status = 302)
     {
-        $redirect = redirect(array_pull($arguments, 'url'));
-        $statusCode = $statusCode ?: isset($arguments['withErrors']) ? 422 : 200;
+        $redirect = redirect($url = array_pull($arguments, 'url'), $status);
+        $status = $status ?: (isset($arguments['withErrors']) ? 422 : 200);
 
         if (request()->expectsJson()) {
-            return new JsonResponse($arguments['withErrors'] ?: $arguments['with'] ?: 'OK', $statusCode);
+            $response = collect($arguments['withErrors'] ?? $arguments['with']);
+
+            return response()->json([$response->flatten()->first() ?? 'OK'], 200)->header('Turbolinks-Location', $url);
         }
 
         foreach ($arguments as $key => $value) {
             $redirect = in_array($key, ['home', 'back']) ? $redirect->{$key}() : $redirect->{$key}($value);
         }
 
-        return $redirect;
+        return $redirect->header('Turbolinks-Location', $url);
     }
 }
 
@@ -90,7 +90,7 @@ if (! function_exists('mimetypes')) {
 if (! function_exists('timezones')) {
     /**
      * Get valid timezones.
-     * This list is based upon the timezone database version 2016.1.
+     * This list is based upon the timezone database version 2017.2.
      *
      * @see http://php.net/manual/en/timezones.php
      *
