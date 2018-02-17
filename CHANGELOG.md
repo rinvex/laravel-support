@@ -23,7 +23,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 - Enforce consistency
 
 ## v1.0.0 - 2016-12-18
-- Commit first draft
+- Tag first release
 
 [v1.0.3]: https://github.com/rinvex/support/compare/v1.0.2...v1.0.3
 [v1.0.1]: https://github.com/rinvex/support/compare/v1.0.1...v1.0.2
