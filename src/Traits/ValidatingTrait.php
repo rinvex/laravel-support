@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Traits;
 
-use Watson\Validating\ValidatingTrait as BaseValidatingTrait;
-
 trait ValidatingTrait
 {
-    use BaseValidatingTrait;
-
     /**
      * Register a validating event with the dispatcher.
      *
