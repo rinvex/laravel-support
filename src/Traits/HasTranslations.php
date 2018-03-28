@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Traits;
 
-use Illuminate\Support\Str;
 use Spatie\Translatable\Events\TranslationHasBeenSet;
 use Spatie\Translatable\HasTranslations as BaseHasTranslations;
 
@@ -43,7 +42,7 @@ trait HasTranslations
             $oldValue = $value;
 
             if ($this->hasSetMutator($key)) {
-                $method = 'set'.Str::studly($key).'Attribute';
+                $method = 'set'.studly_case($key).'Attribute';
                 $value = $this->{$method}($value);
             }
 
