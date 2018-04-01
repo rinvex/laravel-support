@@ -18,7 +18,9 @@ trait Escaper
         $arrayDot = array_filter(array_dot($data));
 
         foreach ($arrayDot as $key => $value) {
-            $arrayDot[$key] = e($value);
+            if (is_string($value)) {
+                $arrayDot[$key] = e($value);
+            }
         }
 
         foreach ($arrayDot as $key => $value) {
