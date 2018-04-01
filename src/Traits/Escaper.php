@@ -7,24 +7,24 @@ namespace Rinvex\Support\Traits;
 trait Escaper
 {
     /**
-     * Escape all values of row.
+     * Escape all values.
      *
-     * @param array $row
+     * @param array $data
      *
      * @return array
      */
-    protected function escapeRow(array $row): array
+    protected function escape(array $data): array
     {
-        $arrayDot = array_filter(array_dot($row));
+        $arrayDot = array_filter(array_dot($data));
 
         foreach ($arrayDot as $key => $value) {
             $arrayDot[$key] = e($value);
         }
 
         foreach ($arrayDot as $key => $value) {
-            array_set($row, $key, $value);
+            array_set($data, $key, $value);
         }
 
-        return $row;
+        return $data;
     }
 }
