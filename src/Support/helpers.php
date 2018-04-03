@@ -3,6 +3,19 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Str;
+use Illuminate\Support\HtmlString;
+
+if (! function_exists('extract_title')) {
+    /**
+     * Extract page title from breadcrumbs.
+     *
+     * @return string
+     */
+    function extract_title(HtmlString $breadcrumbs, string $separator = ' » ')
+    {
+        return strip_tags(str_replace_last($separator, '', str_replace('</li>', $separator, $breadcrumbs)));
+    }
+}
 
 if (! function_exists('domain')) {
     /**
