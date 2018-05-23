@@ -15,7 +15,9 @@ trait HashidsTrait
      */
     public function getRouteKey()
     {
-        return Hashids::encode($this->getAttribute($this->getRouteKeyName()), random_int(1, 999));
+        return in_array(request()->route('accessarea'), config('cortex.foundation.obscure'))
+            ? Hashids::encode($this->getAttribute($this->getKeyName()), random_int(1, 999))
+            : $this->getAttribute($this->getRouteKeyName());
     }
 
     /**
@@ -27,8 +29,8 @@ trait HashidsTrait
      */
     public function resolveRouteBinding($value)
     {
-        $value = Hashids::decode($value)[0];
-
-        return $this->where($this->getRouteKeyName(), $value)->first();
+        return in_array(request()->route('accessarea'), config('cortex.foundation.obscure'))
+            ? $this->where($this->getKeyName(), optional(Hashids::decode($value))[0])->first()
+            : $this->where($this->getRouteKeyName(), $value)->first();
     }
 }
