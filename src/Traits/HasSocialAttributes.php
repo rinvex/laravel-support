@@ -10,17 +10,20 @@ use Spatie\SchemalessAttributes\SchemalessAttributes;
 trait HasSocialAttributes
 {
     /**
-     * Escape all values.
+     * Get social attributes.
      *
-     * @param array $data
-     *
-     * @return array
+     * @return \Spatie\SchemalessAttributes\SchemalessAttributes
      */
     public function getSocialAttribute(): SchemalessAttributes
     {
         return SchemalessAttributes::createForModel($this, 'social');
     }
 
+    /**
+     * Scope with social attributes.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeWithSocial(): Builder
     {
         return SchemalessAttributes::scopeWithSchemalessAttributes('social');
