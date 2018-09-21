@@ -3,6 +3,19 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Str;
+use Illuminate\Support\HtmlString;
+
+if (! function_exists('extract_title')) {
+    /**
+     * Extract page title from breadcrumbs.
+     *
+     * @return string
+     */
+    function extract_title(HtmlString $breadcrumbs, string $separator = ' » ')
+    {
+        return strip_tags(str_replace_last($separator, '', str_replace('</li>', $separator, $breadcrumbs)));
+    }
+}
 
 if (! function_exists('domain')) {
     /**
@@ -27,20 +40,19 @@ if (! function_exists('intend')) {
      */
     function intend(array $arguments, int $status = 302)
     {
-        $redirect = redirect($url = array_pull($arguments, 'url'), $status);
-        $status = $status ?: (isset($arguments['withErrors']) ? 422 : 200);
+        $redirect = redirect(array_pull($arguments, 'url'), $status);
 
         if (request()->expectsJson()) {
             $response = collect($arguments['withErrors'] ?? $arguments['with']);
 
-            return response()->json([$response->flatten()->first() ?? 'OK'], 200)->header('Turbolinks-Location', $url);
+            return response()->json([$response->flatten()->first() ?? 'OK']);
         }
 
         foreach ($arguments as $key => $value) {
             $redirect = in_array($key, ['home', 'back']) ? $redirect->{$key}() : $redirect->{$key}($value);
         }
 
-        return $redirect->header('Turbolinks-Location', $url);
+        return $redirect;
     }
 }
 

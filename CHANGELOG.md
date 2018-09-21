@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v0.0.5] - 2018-09-21
+- Update travis php versions
+- Drop incomplete Turbolinks-Location redirection and other useless code
+- Add missing composer dependency
+- Use global helper functions instead of class based methods
+- Add HashidsTrait
+- Add row escaper trait
+- Rename "escapeRow" method to just "escape"
+- Escape only string values, and skip others
+- Add helper function to extract page titles from breadcrumbs
+- Drop StyleCI multi-language support (paid feature now!)
+- Update composer dependencies
+- Conditionally obscure IDs for if enabled for accessarea
+- Add HasSocialAttributes trait
+- Prepare and tweak testing configuration
+- Update StyleCI options
+- Update PHPUnit options
+
 ## [v0.0.4] - 2018-02-18
 - Remove duplicate and wrong Asia/Kathmandu timezone
 - Add domain helper to get simplify domain host string
@@ -42,6 +60,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v0.0.5]: https://github.com/rinvex/support/compare/v0.0.4...v0.0.5
 [v0.0.4]: https://github.com/rinvex/support/compare/v0.0.3...v0.0.4
 [v0.0.3]: https://github.com/rinvex/support/compare/v0.0.2...v0.0.3
 [v0.0.2]: https://github.com/rinvex/support/compare/v0.0.1...v0.0.2
