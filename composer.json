@@ -1,6 +1,7 @@
 {
-    "name": "rinvex/support",
+    "name": "rinvex/laravel-support",
     "description": "Rinvex common support helpers, contracts, and traits required by various Rinvex packages. Validator functionality, and basic controller included out-of-the-box.",
+    "type": "library",
     "keywords": [
         "rinvex",
         "laravel",
@@ -16,9 +17,9 @@
     "homepage": "https://rinvex.com/marketplace/rinvex-support/",
     "support": {
         "email": "help@rinvex.com",
-        "issues": "https://github.com/rinvex/support/issues",
-        "source": "https://github.com/rinvex/support",
-        "docs": "https://github.com/rinvex/support/blob/master/README.md"
+        "issues": "https://github.com/rinvex/laravel-support/issues",
+        "source": "https://github.com/rinvex/laravel-support",
+        "docs": "https://github.com/rinvex/laravel-support/blob/master/README.md"
     },
     "authors": [
         {
@@ -34,7 +35,7 @@
         },
         {
             "name": "The Generous Laravel Community",
-            "homepage": "https://github.com/rinvex/support/contributors"
+            "homepage": "https://github.com/rinvex/laravel-support/contributors"
         }
     ],
     "require": {
@@ -50,7 +51,7 @@
         "watson/validating": "^3.1.0"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.20.0",
+        "codedungeon/phpunit-result-printer": "^0.22.0",
         "phpunit/phpunit": "^7.0.0"
     },
     "autoload": {
@@ -66,15 +67,13 @@
             "Rinvex\\Support\\Tests\\": "tests"
         }
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
     "config": {
         "sort-packages": true,
         "preferred-install": "dist",
         "optimize-autoloader": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
