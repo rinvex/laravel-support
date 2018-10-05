@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v1.0.0] - 2018-10-01
+- Enforce Consistency
+- Support Laravel 5.7+
+- Rename package to rinvex/laravel-support
+
 ## [v0.0.5] - 2018-09-21
 - Update travis php versions
 - Drop incomplete Turbolinks-Location redirection and other useless code
@@ -60,7 +65,8 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
-[v0.0.5]: https://github.com/rinvex/support/compare/v0.0.4...v0.0.5
-[v0.0.4]: https://github.com/rinvex/support/compare/v0.0.3...v0.0.4
-[v0.0.3]: https://github.com/rinvex/support/compare/v0.0.2...v0.0.3
-[v0.0.2]: https://github.com/rinvex/support/compare/v0.0.1...v0.0.2
+[v1.0.0]: https://github.com/rinvex/laravel-support/compare/v0.0.5...v1.0.0
+[v0.0.5]: https://github.com/rinvex/laravel-support/compare/v0.0.4...v0.0.5
+[v0.0.4]: https://github.com/rinvex/laravel-support/compare/v0.0.3...v0.0.4
+[v0.0.3]: https://github.com/rinvex/laravel-support/compare/v0.0.2...v0.0.3
+[v0.0.2]: https://github.com/rinvex/laravel-support/compare/v0.0.1...v0.0.2
