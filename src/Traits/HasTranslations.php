@@ -34,7 +34,7 @@ trait HasTranslations
      */
     public function getTranslations($key): array
     {
-        $this->guardAgainstUntranslatableAttribute($key);
+        $this->guardAgainstNonTranslatableAttribute($key);
         $value = json_decode($this->getAttributes()[$key] ?? '' ?: '{}', true);
 
         // Inject default translation if none supplied
