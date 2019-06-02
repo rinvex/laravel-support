@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v2.1.0] - 2019-06-02
+- Update composer deps
+- Drop PHP 7.1 travis test
+- Add bunch of helpful console tools to be used in Service Providers
+
 ## [v2.0.0] - 2019-03-03
 - Require PHP 7.2 & Laravel 5.8
 
