@@ -11,7 +11,7 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function publishMigrations(string $package): void
+    protected function publishesMigrations(string $package): void
     {
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
@@ -40,7 +40,7 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function publishConfig(string $package): void
+    protected function publishesConfig(string $package): void
     {
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
@@ -57,7 +57,7 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function publishViews(string $package): void
+    protected function publishesViews(string $package): void
     {
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
@@ -74,7 +74,7 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function publishLang(string $package): void
+    protected function publishesLang(string $package): void
     {
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
@@ -91,7 +91,7 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function registerCommands(): void
+    protected function registersCommands(): void
     {
         // Register artisan commands
         foreach ($this->commands as $key => $value) {
