@@ -91,7 +91,7 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function registersCommands(): void
+    protected function registerCommands(): void
     {
         // Register artisan commands
         foreach ($this->commands as $key => $value) {
