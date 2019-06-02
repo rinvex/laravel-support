@@ -23,9 +23,9 @@ trait ConsoleTools
             $existing = $this->app['files']->glob($this->app->databasePath('migrations/'.$package.'/*.php'));
 
             $migrations = collect($stubs)->flatMap(function ($migration) use ($existing, $package) {
-                $sequence = substr(basename($migration), 0, 2);
+                $sequence = mb_substr(basename($migration), 0, 2);
                 $match = collect($existing)->first(function ($item, $key) use ($migration, $sequence) {
-                    return strpos($item, str_replace(['.stub', $sequence], '', basename($migration))) !== false;
+                    return mb_strpos($item, str_replace(['.stub', $sequence], '', basename($migration))) !== false;
                 });
 
                 return [$migration => $this->app->databasePath('migrations/'.$package.'/'.($match ? basename($match) : date('Y_m_d_His', time() + $sequence).str_replace(['.stub', $sequence], '', basename($migration))))];
