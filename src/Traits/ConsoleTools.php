@@ -11,11 +11,11 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function publishesMigrations(string $package): void
+    protected function publishesMigrations(string $package, bool $isModule = false): void
     {
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
-        $basePath = starts_with($package, 'cortex') ? $this->app->path($package)
+        $basePath = $isModule ? $this->app->path($package)
             : $this->app->basePath('vendor/'.$package);
 
         if (file_exists($path = $basePath.'/database/migrations')) {
@@ -40,11 +40,11 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function publishesConfig(string $package): void
+    protected function publishesConfig(string $package, bool $isModule = false): void
     {
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
-        $basePath = starts_with($package, 'cortex') ? $this->app->path($package)
+        $basePath = $isModule ? $this->app->path($package)
             : $this->app->basePath('vendor/'.$package);
 
         if (file_exists($path = $basePath.'/config/config.php')) {
@@ -57,11 +57,11 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function publishesViews(string $package): void
+    protected function publishesViews(string $package, bool $isModule = false): void
     {
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
-        $basePath = starts_with($package, 'cortex') ? $this->app->path($package)
+        $basePath = $isModule ? $this->app->path($package)
             : $this->app->basePath('vendor/'.$package);
 
         if (file_exists($path = $basePath.'/resources/views')) {
@@ -74,11 +74,11 @@ trait ConsoleTools
      *
      * @return void
      */
-    protected function publishesLang(string $package): void
+    protected function publishesLang(string $package, bool $isModule = false): void
     {
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
-        $basePath = starts_with($package, 'cortex') ? $this->app->path($package)
+        $basePath = $isModule ? $this->app->path($package)
             : $this->app->basePath('vendor/'.$package);
 
         if (file_exists($path = $basePath.'/resources/lang')) {
