@@ -47,6 +47,7 @@
         "illuminate/routing": "^6.0.0",
         "illuminate/support": "^6.0.0",
         "illuminate/validation": "^6.0.0",
+        "laravel/helpers": "^1.1.0",
         "spatie/laravel-schemaless-attributes": "^1.6.0",
         "watson/validating": "^3.3.0"
     },
