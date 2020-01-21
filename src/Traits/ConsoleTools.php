@@ -13,6 +13,10 @@ trait ConsoleTools
      */
     protected function publishesMigrations(string $package, bool $isModule = false): void
     {
+        if ($this->publishesResources()) {
+            return;
+        }
+
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
@@ -42,6 +46,10 @@ trait ConsoleTools
      */
     protected function publishesConfig(string $package, bool $isModule = false): void
     {
+        if ($this->publishesResources()) {
+            return;
+        }
+
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
@@ -59,6 +67,10 @@ trait ConsoleTools
      */
     protected function publishesViews(string $package, bool $isModule = false): void
     {
+        if ($this->publishesResources()) {
+            return;
+        }
+
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
@@ -76,6 +88,10 @@ trait ConsoleTools
      */
     protected function publishesLang(string $package, bool $isModule = false): void
     {
+        if ($this->publishesResources()) {
+            return;
+        }
+
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
@@ -99,5 +115,27 @@ trait ConsoleTools
         }
 
         $this->commands(array_values($this->commands));
+    }
+
+    /**
+     * Can publish resources.
+     *
+     * @return bool
+     */
+    protected function publishesResources(): bool
+    {
+        return ! $this->app->environment('production');
+    }
+
+    /**
+     * Can autoload migrations.
+     *
+     * @param string $config
+     *
+     * @return bool
+     */
+    protected function autoloadMigrations(string $config): bool
+    {
+        return ! $this->app->environment('production') && $this->app['config'][$config.'.autoload_migrations'];
     }
 }
