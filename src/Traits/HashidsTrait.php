@@ -19,7 +19,6 @@ trait HashidsTrait
 
         return in_array(request()->route('accessarea'), $obscure['areas'])
             ? Hashids::encode($this->getAttribute($this->getKeyName()), $obscure['rotate'] ? random_int(1, 999) : 1)
-
             : $this->getAttribute($this->getRouteKeyName());
     }
 
