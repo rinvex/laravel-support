@@ -13,7 +13,7 @@ if (! function_exists('extract_title')) {
      */
     function extract_title(HtmlString $breadcrumbs, string $separator = ' » ')
     {
-        return strip_tags(str_replace_last($separator, '', str_replace('</li>', $separator, $breadcrumbs)));
+        return strip_tags(Str::replaceLast($separator, '', str_replace('</li>', $separator, $breadcrumbs)));
     }
 }
 
@@ -40,7 +40,7 @@ if (! function_exists('intend')) {
      */
     function intend(array $arguments, int $status = 302)
     {
-        $redirect = redirect(array_pull($arguments, 'url'), $status);
+        $redirect = redirect(Arr::pull($arguments, 'url'), $status);
 
         if (request()->expectsJson()) {
             $response = collect($arguments['withErrors'] ?? $arguments['with']);

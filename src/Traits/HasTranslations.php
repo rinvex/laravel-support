@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Traits;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Spatie\Translatable\Events\TranslationHasBeenSet;
 use Spatie\Translatable\HasTranslations as BaseHasTranslations;
 
@@ -22,7 +24,7 @@ trait HasTranslations
             return parent::getAttributeValue($key);
         }
 
-        return $this->getTranslation($key, config('app.locale')) ?: array_first($this->getTranslations($key));
+        return $this->getTranslation($key, config('app.locale')) ?: Arr::first($this->getTranslations($key));
     }
 
     /**
@@ -42,7 +44,7 @@ trait HasTranslations
             $oldValue = $value;
 
             if ($this->hasSetMutator($key)) {
-                $method = 'set'.studly_case($key).'Attribute';
+                $method = 'set'.Str::studly($key).'Attribute';
                 $value = $this->{$method}($value);
             }
 
