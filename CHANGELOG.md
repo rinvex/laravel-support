@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v3.0.4] - 2020-03-13
+- Tweak TravisCI config
+- Add migrations autoload option to the package
+- Tweak service provider `publishesResources`
+- Install felixkiss/uniquewith-validator composer package
+- Ability to enable/disable hashing for each  model in any area without any need to enable/disable the whole area (#26)
+- Remove indirect composer dependency
+- Drop using global helpers
+- Update StyleCI config
+
 ## [v3.0.3] - 2019-12-18
 - Tweak ID obscure feature
 
