@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Traits;
 
+use Watson\Validating\Injectors\UniqueWithInjector;
 use Watson\Validating\ValidatingTrait as BaseValidatingTrait;
 
 trait ValidatingTrait
 {
+    use UniqueWithInjector;
     use BaseValidatingTrait;
 
     /**

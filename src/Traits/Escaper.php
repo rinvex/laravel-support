@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Traits;
 
+use Illuminate\Support\Arr;
+
 trait Escaper
 {
     /**
@@ -15,7 +17,7 @@ trait Escaper
      */
     protected function escape(array $data): array
     {
-        $arrayDot = array_filter(array_dot($data));
+        $arrayDot = array_filter(Arr::dot($data));
 
         foreach ($arrayDot as $key => $value) {
             if (is_string($value)) {
@@ -24,7 +26,7 @@ trait Escaper
         }
 
         foreach ($arrayDot as $key => $value) {
-            array_set($data, $key, $value);
+            Arr::set($data, $key, $value);
         }
 
         return $data;

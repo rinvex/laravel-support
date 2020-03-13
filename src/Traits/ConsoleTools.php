@@ -13,22 +13,26 @@ trait ConsoleTools
      */
     protected function publishesMigrations(string $package, bool $isModule = false): void
     {
+        if ($this->publishesResources()) {
+            return;
+        }
+
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
             : $this->app->basePath('vendor/'.$package);
 
         if (file_exists($path = $basePath.'/database/migrations')) {
-            $stubs = $this->app['files']->glob($path.'/*.php.stub');
+            $stubs = $this->app['files']->glob($path.'/*.php');
             $existing = $this->app['files']->glob($this->app->databasePath('migrations/'.$package.'/*.php'));
 
             $migrations = collect($stubs)->flatMap(function ($migration) use ($existing, $package) {
-                $sequence = mb_substr(basename($migration), 0, 2);
+                $sequence = mb_substr(basename($migration), 0, 17);
                 $match = collect($existing)->first(function ($item, $key) use ($migration, $sequence) {
-                    return mb_strpos($item, str_replace(['.stub', $sequence], '', basename($migration))) !== false;
+                    return mb_strpos($item, str_replace($sequence, '', basename($migration))) !== false;
                 });
 
-                return [$migration => $this->app->databasePath('migrations/'.$package.'/'.($match ? basename($match) : date('Y_m_d_His', time() + $sequence).str_replace(['.stub', $sequence], '', basename($migration))))];
+                return [$migration => $this->app->databasePath('migrations/'.$package.'/'.($match ? basename($match) : date('Y_m_d_His', time() + mb_substr($sequence, -6)).str_replace($sequence, '', basename($migration))))];
             })->toArray();
 
             $this->publishes($migrations, $namespace.'-migrations');
@@ -42,6 +46,10 @@ trait ConsoleTools
      */
     protected function publishesConfig(string $package, bool $isModule = false): void
     {
+        if ($this->publishesResources()) {
+            return;
+        }
+
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
@@ -59,6 +67,10 @@ trait ConsoleTools
      */
     protected function publishesViews(string $package, bool $isModule = false): void
     {
+        if ($this->publishesResources()) {
+            return;
+        }
+
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
@@ -76,6 +88,10 @@ trait ConsoleTools
      */
     protected function publishesLang(string $package, bool $isModule = false): void
     {
+        if ($this->publishesResources()) {
+            return;
+        }
+
         $namespace = str_replace('laravel-', '', $package);
         $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
@@ -99,5 +115,27 @@ trait ConsoleTools
         }
 
         $this->commands(array_values($this->commands));
+    }
+
+    /**
+     * Can publish resources.
+     *
+     * @return bool
+     */
+    protected function publishesResources(): bool
+    {
+        return ! $this->app->environment('production');
+    }
+
+    /**
+     * Can autoload migrations.
+     *
+     * @param string $config
+     *
+     * @return bool
+     */
+    protected function autoloadMigrations(string $config): bool
+    {
+        return ! $this->app->environment('production') && $this->app['config'][$config.'.autoload_migrations'];
     }
 }
