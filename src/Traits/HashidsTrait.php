@@ -15,7 +15,7 @@ trait HashidsTrait
      */
     public function getRouteKey()
     {
-        $obscure = property_exists($this,'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
+        $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
 
         return in_array(request()->route('accessarea'), $obscure['areas'])
             ? Hashids::encode($this->getAttribute($this->getKeyName()), $obscure['rotate'] ? random_int(1, 999) : 1)
@@ -31,7 +31,7 @@ trait HashidsTrait
      */
     public function resolveRouteBinding($value)
     {
-        $obscure = property_exists($this,'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
+        $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
 
         return in_array(request()->route('accessarea'), $obscure['areas'])
             ? $this->where($this->getKeyName(), optional(Hashids::decode($value))[0])->first()

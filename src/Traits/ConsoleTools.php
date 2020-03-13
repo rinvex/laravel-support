@@ -32,7 +32,7 @@ trait ConsoleTools
                     return mb_strpos($item, str_replace($sequence, '', basename($migration))) !== false;
                 });
 
-                return [$migration => $this->app->databasePath('migrations/'.$package.'/'.($match ? basename($match) : date('Y_m_d_His', time() + substr($sequence, -6)).str_replace($sequence, '', basename($migration))))];
+                return [$migration => $this->app->databasePath('migrations/'.$package.'/'.($match ? basename($match) : date('Y_m_d_His', time() + mb_substr($sequence, -6)).str_replace($sequence, '', basename($migration))))];
             })->toArray();
 
             $this->publishes($migrations, $namespace.'-migrations');
