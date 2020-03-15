@@ -39,22 +39,22 @@
         }
     ],
     "require": {
-        "php": "^7.2.0",
-        "felixkiss/uniquewith-validator": "^3.3.0",
-        "illuminate/auth": "^6.0.0",
-        "illuminate/bus": "^6.0.0",
-        "illuminate/contracts": "^6.0.0",
-        "illuminate/http": "^6.0.0",
-        "illuminate/routing": "^6.0.0",
-        "illuminate/support": "^6.0.0",
-        "illuminate/validation": "^6.0.0",
-        "laravel/helpers": "^1.1.0",
-        "spatie/laravel-schemaless-attributes": "^1.6.0",
-        "watson/validating": "^3.3.0"
+        "php": "^7.4.0",
+        "felixkiss/uniquewith-validator": "^3.4.0",
+        "illuminate/auth": "^7.0.0",
+        "illuminate/bus": "^7.0.0",
+        "illuminate/contracts": "^7.0.0",
+        "illuminate/http": "^7.0.0",
+        "illuminate/routing": "^7.0.0",
+        "illuminate/support": "^7.0.0",
+        "illuminate/validation": "^7.0.0",
+        "laravel/helpers": "^1.2.0",
+        "spatie/laravel-schemaless-attributes": "^1.7.0",
+        "watson/validating": "^5.0.0"
     },
     "require-dev": {
-        "codedungeon/phpunit-result-printer": "^0.26.0",
-        "phpunit/phpunit": "^8.3.0"
+        "codedungeon/phpunit-result-printer": "^0.27.0",
+        "phpunit/phpunit": "^9.0.0"
     },
     "autoload": {
         "files": [
