@@ -13,7 +13,7 @@ trait ConsoleTools
      */
     protected function publishesMigrations(string $package, bool $isModule = false): void
     {
-        if ($this->publishesResources()) {
+        if (! $this->publishesResources()) {
             return;
         }
 
@@ -46,7 +46,7 @@ trait ConsoleTools
      */
     protected function publishesConfig(string $package, bool $isModule = false): void
     {
-        if ($this->publishesResources()) {
+        if (! $this->publishesResources()) {
             return;
         }
 
@@ -67,7 +67,7 @@ trait ConsoleTools
      */
     protected function publishesViews(string $package, bool $isModule = false): void
     {
-        if ($this->publishesResources()) {
+        if (! $this->publishesResources()) {
             return;
         }
 
@@ -88,7 +88,7 @@ trait ConsoleTools
      */
     protected function publishesLang(string $package, bool $isModule = false): void
     {
-        if ($this->publishesResources()) {
+        if (! $this->publishesResources()) {
             return;
         }
 
