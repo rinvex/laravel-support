@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v4.0.2] - 2020-03-20
+- Convert into bigInteger database fields
+- Add shortcut -f (force) for artisan publish commands
+- Fix migrations path
+
 ## [v4.0.1] - 2020-03-16
 - Update compatibility with Laravel v7.x
 
@@ -115,6 +120,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v4.0.2]: https://github.com/rinvex/laravel-support/compare/v4.0.1...v4.0.2
 [v4.0.1]: https://github.com/rinvex/laravel-support/compare/v4.0.0...v4.0.1
 [v4.0.0]: https://github.com/rinvex/laravel-support/compare/v3.0.4...v4.0.0
 [v3.0.4]: https://github.com/rinvex/laravel-support/compare/v3.0.3...v3.0.4
