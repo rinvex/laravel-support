@@ -18,7 +18,6 @@ trait ConsoleTools
         }
 
         $namespace = str_replace('laravel-', '', $package);
-        $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
             : $this->app->basePath('vendor/'.$package);
 
@@ -35,7 +34,7 @@ trait ConsoleTools
                 return [$migration => $this->app->databasePath('migrations/'.$package.'/'.($match ? basename($match) : date('Y_m_d_His', time() + mb_substr($sequence, -6)).str_replace($sequence, '', basename($migration))))];
             })->toArray();
 
-            $this->publishes($migrations, $namespace.'-migrations');
+            $this->publishes($migrations, $namespace.'::migrations');
         }
     }
 
@@ -51,12 +50,11 @@ trait ConsoleTools
         }
 
         $namespace = str_replace('laravel-', '', $package);
-        $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
             : $this->app->basePath('vendor/'.$package);
 
         if (file_exists($path = $basePath.'/config/config.php')) {
-            $this->publishes([$path => $this->app->configPath(str_replace('-', '.', $namespace).'.php')], $namespace.'-config');
+            $this->publishes([$path => $this->app->configPath(str_replace('-', '.', $namespace).'.php')], $namespace.'::config');
         }
     }
 
@@ -72,12 +70,11 @@ trait ConsoleTools
         }
 
         $namespace = str_replace('laravel-', '', $package);
-        $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
             : $this->app->basePath('vendor/'.$package);
 
         if (file_exists($path = $basePath.'/resources/views')) {
-            $this->publishes([$path => $this->app->resourcePath('views/vendor/'.$package)], $namespace.'-views');
+            $this->publishes([$path => $this->app->resourcePath('views/vendor/'.$package)], $namespace.'::views');
         }
     }
 
@@ -93,12 +90,11 @@ trait ConsoleTools
         }
 
         $namespace = str_replace('laravel-', '', $package);
-        $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
         $basePath = $isModule ? $this->app->path($package)
             : $this->app->basePath('vendor/'.$package);
 
         if (file_exists($path = $basePath.'/resources/lang')) {
-            $this->publishes([$path => $this->app->resourcePath('lang/vendor/'.$package)], $namespace.'-lang');
+            $this->publishes([$path => $this->app->resourcePath('lang/vendor/'.$package)], $namespace.'::lang');
         }
     }
 
