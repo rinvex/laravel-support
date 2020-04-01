@@ -33,20 +33,6 @@ intend([
 
 > **Note:** this helper accepts `redirect` methods as it's input keys, such as `withErrors`, `with`, `back`, and `route` ..etc
 
-### `lower_case()`
-
-The `lower_case` method converts the given string to lower-case:
-```php
-$lowercaseStr = lower_case('THIS UPPER CASE TEXT WILL BE LOWER CASED');
-```
-
-### `upper_case()`
-
-The `upper_case` method converts the given string to upper-case:
-```php
-$uppercaseStr = upper_case('this lower case text will be capitalized');
-```
-
 ### `mimetypes()`
 
 The `mimetypes` method gets valid mime types:

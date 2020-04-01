@@ -56,34 +56,6 @@ if (! function_exists('intend')) {
     }
 }
 
-if (! function_exists('lower_case')) {
-    /**
-     * Convert the given string to lower-case.
-     *
-     * @param string $value
-     *
-     * @return string
-     */
-    function lower_case($value)
-    {
-        return Str::lower($value);
-    }
-}
-
-if (! function_exists('upper_case')) {
-    /**
-     * Convert the given string to upper-case.
-     *
-     * @param string $value
-     *
-     * @return string
-     */
-    function upper_case($value)
-    {
-        return Str::upper($value);
-    }
-}
-
 if (! function_exists('mimetypes')) {
     /**
      * Get valid mime types.
