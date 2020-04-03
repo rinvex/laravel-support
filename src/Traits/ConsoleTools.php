@@ -132,6 +132,6 @@ trait ConsoleTools
      */
     protected function autoloadMigrations(string $config): bool
     {
-        return ! $this->app->environment('production') && $this->app['config'][$config.'.autoload_migrations'];
+        return ! $this->app->environment('production') && $this->app['config'][str_replace('/', '.', $config).'.autoload_migrations'];
     }
 }
