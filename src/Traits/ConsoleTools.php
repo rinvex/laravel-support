@@ -54,7 +54,7 @@ trait ConsoleTools
             : $this->app->basePath('vendor/'.$package);
 
         if (file_exists($path = $basePath.'/config/config.php')) {
-            $this->publishes([$path => $this->app->configPath(str_replace('-', '.', $namespace).'.php')], $namespace.'::config');
+            $this->publishes([$path => $this->app->configPath(str_replace('/', '.', $namespace).'.php')], $namespace.'::config');
         }
     }
 
