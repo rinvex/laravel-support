@@ -122,7 +122,7 @@ trait ConsoleTools
             return;
         }
 
-        if (! $this->app->environment('production')) {
+        if (! $this->app->environment('production') && property_exists($this, 'devCommands')) {
             // Register artisan devCommands
             foreach ($this->devCommands as $key => $value) {
                 $this->app->singleton($value, $key);
@@ -131,12 +131,14 @@ trait ConsoleTools
             $this->commands(array_values($this->devCommands));
         }
 
-        // Register artisan commands
-        foreach ($this->commands as $key => $value) {
-            $this->app->singleton($value, $key);
-        }
+        if (property_exists($this, 'commands')) {
+            // Register artisan commands
+            foreach ($this->commands as $key => $value) {
+                $this->app->singleton($value, $key);
+            }
 
-        $this->commands(array_values($this->commands));
+            $this->commands(array_values($this->commands));
+        }
     }
 
     /**
