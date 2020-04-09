@@ -99,13 +99,26 @@ trait ConsoleTools
     }
 
     /**
+     * Determine if the application is running in the console.
+     *
+     * @TODO: Implement this method to detect if we're in active dev zone or not!
+     *        Ex: running inside cortex/console action
+     *
+     * @return bool
+     */
+    public function runningInDevzone()
+    {
+        return true;
+    }
+
+    /**
      * Register console commands.
      *
      * @return void
      */
     protected function registerCommands(): void
     {
-        if (! $this->app->runningInConsole() && ! $this->app->runningInDevzone()) {
+        if (! $this->app->runningInConsole() && ! $this->runningInDevzone()) {
             return;
         }
 
@@ -133,7 +146,7 @@ trait ConsoleTools
      */
     protected function publishesResources(): bool
     {
-        return ! $this->app->environment('production');
+        return ! $this->app->environment('production') || $this->app->runningInConsole() || $this->runningInDevzone();
     }
 
     /**
@@ -145,6 +158,6 @@ trait ConsoleTools
      */
     protected function autoloadMigrations(string $config): bool
     {
-        return ! $this->app->environment('production') && $this->app['config'][str_replace(['laravel-', '/'], ['', '.'], $config).'.autoload_migrations'];
+        return $this->publishesResources() && $this->app['config'][str_replace(['laravel-', '/'], ['', '.'], $config).'.autoload_migrations'];
     }
 }
