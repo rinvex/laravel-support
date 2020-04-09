@@ -105,6 +105,19 @@ trait ConsoleTools
      */
     protected function registerCommands(): void
     {
+        if (! $this->app->runningInConsole() && ! $this->app->runningInDevzone()) {
+            return;
+        }
+
+        if (! $this->app->environment('production')) {
+            // Register artisan devCommands
+            foreach ($this->devCommands as $key => $value) {
+                $this->app->singleton($value, $key);
+            }
+
+            $this->commands(array_values($this->devCommands));
+        }
+
         // Register artisan commands
         foreach ($this->commands as $key => $value) {
             $this->app->singleton($value, $key);
