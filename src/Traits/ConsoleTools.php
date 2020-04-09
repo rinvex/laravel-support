@@ -99,18 +99,46 @@ trait ConsoleTools
     }
 
     /**
+     * Determine if the application is running in the console.
+     *
+     * @TODO: Implement this method to detect if we're in active dev zone or not!
+     *        Ex: running inside cortex/console action
+     *
+     * @return bool
+     */
+    public function runningInDevzone()
+    {
+        return true;
+    }
+
+    /**
      * Register console commands.
      *
      * @return void
      */
     protected function registerCommands(): void
     {
-        // Register artisan commands
-        foreach ($this->commands as $key => $value) {
-            $this->app->singleton($value, $key);
+        if (! $this->app->runningInConsole() && ! $this->runningInDevzone()) {
+            return;
         }
 
-        $this->commands(array_values($this->commands));
+        if (! $this->app->environment('production') && property_exists($this, 'devCommands')) {
+            // Register artisan devCommands
+            foreach ($this->devCommands as $key => $value) {
+                $this->app->singleton($value, $key);
+            }
+
+            $this->commands(array_values($this->devCommands));
+        }
+
+        if (property_exists($this, 'commands')) {
+            // Register artisan commands
+            foreach ($this->commands as $key => $value) {
+                $this->app->singleton($value, $key);
+            }
+
+            $this->commands(array_values($this->commands));
+        }
     }
 
     /**
@@ -120,7 +148,7 @@ trait ConsoleTools
      */
     protected function publishesResources(): bool
     {
-        return ! $this->app->environment('production');
+        return ! $this->app->environment('production') || $this->app->runningInConsole() || $this->runningInDevzone();
     }
 
     /**
@@ -132,6 +160,6 @@ trait ConsoleTools
      */
     protected function autoloadMigrations(string $config): bool
     {
-        return ! $this->app->environment('production') && $this->app['config'][str_replace(['laravel-', '/'], ['', '.'], $config).'.autoload_migrations'];
+        return $this->publishesResources() && $this->app['config'][str_replace(['laravel-', '/'], ['', '.'], $config).'.autoload_migrations'];
     }
 }
