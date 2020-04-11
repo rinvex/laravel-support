@@ -114,31 +114,21 @@ trait ConsoleTools
     /**
      * Register console commands.
      *
+     * @param array $commands
+     *
      * @return void
      */
-    protected function registerCommands(): void
+    protected function registerCommands(array $commands): void
     {
         if (! $this->app->runningInConsole() && ! $this->runningInDevzone()) {
             return;
         }
 
-        if (! $this->app->environment('production') && property_exists($this, 'devCommands')) {
-            // Register artisan devCommands
-            foreach ($this->devCommands as $key => $value) {
-                $this->app->singleton($value, $key);
-            }
-
-            $this->commands(array_values($this->devCommands));
+        foreach ($commands as $key => $value) {
+            $this->app->singleton($value, $key);
         }
 
-        if (property_exists($this, 'commands')) {
-            // Register artisan commands
-            foreach ($this->commands as $key => $value) {
-                $this->app->singleton($value, $key);
-            }
-
-            $this->commands(array_values($this->commands));
-        }
+        $this->commands(array_values($commands));
     }
 
     /**
