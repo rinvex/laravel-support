@@ -65,7 +65,7 @@ trait HasTranslations
     public function attributesToArray()
     {
         $values = array_map(function ($attribute) {
-            return $this->getTranslation($attribute, config('app.locale')) ?: null;
+            return $this->getTranslation($attribute, config('app.locale')) ?: $this->getTranslation($attribute, config('translatable.fallback_locale'));
         }, $keys = $this->getTranslatableAttributes());
 
         return array_replace(parent::attributesToArray(), array_combine($keys, $values));
