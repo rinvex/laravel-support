@@ -76,6 +76,13 @@
         "preferred-install": "dist",
         "optimize-autoloader": true
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rinvex\\Support\\Providers\\SupportServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true
 }
