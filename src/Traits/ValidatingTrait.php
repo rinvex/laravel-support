@@ -13,6 +13,20 @@ trait ValidatingTrait
     use BaseValidatingTrait;
 
     /**
+     * Merge new validation rules with existing validation rules on the model.
+     *
+     * @param  array  $rules
+     *
+     * @return $this
+     */
+    public function mergeRules(array $rules)
+    {
+        $this->rules = array_merge($this->rules, $rules);
+
+        return $this;
+    }
+
+    /**
      * Register a validating event with the dispatcher.
      *
      * @param \Closure|string $callback
