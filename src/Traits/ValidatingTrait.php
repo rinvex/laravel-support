@@ -15,7 +15,7 @@ trait ValidatingTrait
     /**
      * Merge new validation rules with existing validation rules on the model.
      *
-     * @param  array  $rules
+     * @param array $rules
      *
      * @return $this
      */
