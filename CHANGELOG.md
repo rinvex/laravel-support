@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v4.1.1] - 2020-06-19
+- Refactor route parameters to container service binding
+
 ## [v4.1.0] - 2020-06-15
 - Add `mergeRules` method to ValidatingTrait
 - Drop PHP 7.2 & 7.3 support from travis
@@ -146,6 +149,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v4.1.1]: https://github.com/rinvex/laravel-support/compare/v4.1.0...v4.1.1
 [v4.1.0]: https://github.com/rinvex/laravel-support/compare/v4.0.7...v4.1.0
 [v4.0.7]: https://github.com/rinvex/laravel-support/compare/v4.0.6...v4.0.7
 [v4.0.6]: https://github.com/rinvex/laravel-support/compare/v4.0.5...v4.0.6
