@@ -21,7 +21,11 @@ trait HashidsTrait
 
         $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
 
+<<<<<<< HEAD
         return in_array($accessarea, $obscure['areas'])
+=======
+        return in_array(request()->route('accessarea'), $obscure['areas'])
+>>>>>>> 41869f98a5d5b0a9c54b0a15fbadb89e0191680d
             ? Hashids::encode($this->getAttribute($this->getKeyName()), $obscure['rotate'] ? random_int(1, 999) : 1)
             : $this->getAttribute($this->getRouteKeyName());
     }
