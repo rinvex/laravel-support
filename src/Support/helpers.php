@@ -13,7 +13,7 @@ if (! function_exists('extract_title')) {
      */
     function extract_title(HtmlString $breadcrumbs, string $separator = ' » ')
     {
-        return strip_tags(str_replace_last($separator, '', str_replace('</li>', $separator, $breadcrumbs)));
+        return preg_replace('/[\n\r\s]+/', ' ', strip_tags(Str::replaceLast($separator, '', str_replace('</li>', $separator, $breadcrumbs))));
     }
 }
 
@@ -40,7 +40,7 @@ if (! function_exists('intend')) {
      */
     function intend(array $arguments, int $status = 302)
     {
-        $redirect = redirect(array_pull($arguments, 'url'), $status);
+        $redirect = redirect(Arr::pull($arguments, 'url'), $status);
 
         if (request()->expectsJson()) {
             $response = collect($arguments['withErrors'] ?? $arguments['with']);
@@ -53,34 +53,6 @@ if (! function_exists('intend')) {
         }
 
         return $redirect;
-    }
-}
-
-if (! function_exists('lower_case')) {
-    /**
-     * Convert the given string to lower-case.
-     *
-     * @param string $value
-     *
-     * @return string
-     */
-    function lower_case($value)
-    {
-        return Str::lower($value);
-    }
-}
-
-if (! function_exists('upper_case')) {
-    /**
-     * Convert the given string to upper-case.
-     *
-     * @param string $value
-     *
-     * @return string
-     */
-    function upper_case($value)
-    {
-        return Str::upper($value);
     }
 }
 
