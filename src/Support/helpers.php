@@ -74,15 +74,12 @@ if (! function_exists('mimetypes')) {
 if (! function_exists('timezones')) {
     /**
      * Get valid timezones.
-     * This list is based upon the timezone database version 2017.2.
-     *
-     * @see http://php.net/manual/en/timezones.php
      *
      * @return array
      */
     function timezones()
     {
-        return json_decode(file_get_contents(__DIR__.'/../../resources/data/timezones.json'), true);
+        return array_combine(timezone_identifiers_list(), timezone_identifiers_list());
     }
 }
 
