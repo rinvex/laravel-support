@@ -18,5 +18,11 @@ class SupportServiceProvider extends ServiceProvider
         Validator::extend('strip_tags', function ($attribute, $value) {
             return strip_tags($value) === $value;
         }, trans('validation.invalid_strip_tags'));
+
+        // Add time offset validation rule
+        Validator::extend('timeoffset', function ($attribute, $value) {
+            return array_key_exists($value, timeoffsets());
+        }, trans('validation.invalid_timeoffset'));
+
     }
 }

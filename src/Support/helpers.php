@@ -13,7 +13,7 @@ if (! function_exists('extract_title')) {
      */
     function extract_title(HtmlString $breadcrumbs, string $separator = ' » ')
     {
-        return preg_replace('/[\n\r\s]+/', ' ', strip_tags(Str::replaceLast($separator, '', str_replace('</li>', $separator, $breadcrumbs))));
+        return Str::afterLast(preg_replace('/[\n\r\s]+/', ' ', strip_tags(Str::replaceLast($separator, '', str_replace('</li>', $separator, $breadcrumbs)))), $separator)." {$separator} ".config('app.name');
     }
 }
 
@@ -74,15 +74,63 @@ if (! function_exists('mimetypes')) {
 if (! function_exists('timezones')) {
     /**
      * Get valid timezones.
-     * This list is based upon the timezone database version 2017.2.
-     *
-     * @see http://php.net/manual/en/timezones.php
      *
      * @return array
      */
     function timezones()
     {
-        return json_decode(file_get_contents(__DIR__.'/../../resources/data/timezones.json'), true);
+        return array_combine(timezone_identifiers_list(), timezone_identifiers_list());
+    }
+}
+
+if (! function_exists('timeoffsets')) {
+    /**
+     * Get valid time offsets.
+     *
+     * @return array
+     */
+    function timeoffsets()
+    {
+        return [
+            '-1200' => 'UTC -12:00',
+            '-1100' => 'UTC -11:00',
+            '-1000' => 'UTC -10:00',
+            '-0930' => 'UTC -09:30',
+            '-0900' => 'UTC -09:00',
+            '-0800' => 'UTC -08:00',
+            '-0700' => 'UTC -07:00',
+            '-0600' => 'UTC -06:00',
+            '-0500' => 'UTC -05:00',
+            '-0400' => 'UTC -04:00',
+            '-0330' => 'UTC -03:30',
+            '-0300' => 'UTC -03:00',
+            '-0200' => 'UTC -02:00',
+            '-0100' => 'UTC -01:00',
+            '+0000' => 'UTC ±00:00',
+            '+0100' => 'UTC +01:00',
+            '+0200' => 'UTC +02:00',
+            '+0300' => 'UTC +03:00',
+            '+0330' => 'UTC +03:30',
+            '+0400' => 'UTC +04:00',
+            '+0430' => 'UTC +04:30',
+            '+0500' => 'UTC +05:00',
+            '+0530' => 'UTC +05:30',
+            '+0545' => 'UTC +05:45',
+            '+0600' => 'UTC +06:00',
+            '+0630' => 'UTC +06:30',
+            '+0700' => 'UTC +07:00',
+            '+0800' => 'UTC +08:00',
+            '+0845' => 'UTC +08:45',
+            '+0900' => 'UTC +09:00',
+            '+0930' => 'UTC +09:30',
+            '+1000' => 'UTC +10:00',
+            '+1030' => 'UTC +10:30',
+            '+1100' => 'UTC +11:00',
+            '+1200' => 'UTC +12:00',
+            '+1245' => 'UTC +12:45',
+            '+1300' => 'UTC +13:00',
+            '+1400' => 'UTC +14:00',
+        ];
     }
 }
 
