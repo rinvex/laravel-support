@@ -23,6 +23,5 @@ class SupportServiceProvider extends ServiceProvider
         Validator::extend('timeoffset', function ($attribute, $value) {
             return array_key_exists($value, timeoffsets());
         }, trans('validation.invalid_timeoffset'));
-
     }
 }
