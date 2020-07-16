@@ -13,7 +13,7 @@ trait HasTimezones
     /**
      * Return a timestamp as DateTime object.
      *
-     * @param  mixed  $value
+     * @param mixed $value
      *
      * @return \Illuminate\Support\Carbon
      */
