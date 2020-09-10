@@ -49,7 +49,7 @@
         "illuminate/support": "^8.0.0",
         "illuminate/validation": "^8.0.0",
         "spatie/laravel-schemaless-attributes": "^1.7.0",
-        "watson/validating": "^5.0.0"
+        "watson/validating": "^6.0.0"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": "^0.27.0",
