@@ -40,7 +40,7 @@
     ],
     "require": {
         "php": "^7.4.0 || ^8.0.0",
-        "rinvex/tmp-felixkiss-uniquewith-validator": "3.4.0",
+        "rinvex/tmp-felixkiss-uniquewith-validator": "3.4.2",
         "illuminate/auth": "^8.0.0 || ^9.0.0",
         "illuminate/bus": "^8.0.0 || ^9.0.0",
         "illuminate/contracts": "^8.0.0 || ^9.0.0",
