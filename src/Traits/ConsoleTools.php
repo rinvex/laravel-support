@@ -144,12 +144,12 @@ trait ConsoleTools
     /**
      * Can autoload migrations.
      *
-     * @param string $config
+     * @param string $module
      *
      * @return bool
      */
-    protected function autoloadMigrations(string $config): bool
+    protected function autoloadMigrations(string $module): bool
     {
-        return $this->publishesResources() && $this->app['config'][str_replace(['laravel-', '/'], ['', '.'], $config).'.autoload_migrations'];
+        return $this->publishesResources() && $this->app['config'][str_replace(['laravel-', '/'], ['', '.'], $module).'.autoload_migrations'];
     }
 }
