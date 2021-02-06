@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Traits;
 
+use Illuminate\Support\Str;
+
 trait ConsoleTools
 {
     /**
@@ -129,6 +131,21 @@ trait ConsoleTools
         }
 
         $this->commands(array_values($commands));
+    }
+
+    /**
+     * Register models into IoC.
+     *
+     * @param array $models
+     *
+     * @return void
+     */
+    protected function registerModels(array $models): void
+    {
+        foreach ($models as $service => $class) {
+            $this->app->singleton($service, $model = $this->app['config'][Str::replaceLast('.', '.models.', $service)]);
+            $model === $class || $this->app->alias($service, $class);
+        }
     }
 
     /**
