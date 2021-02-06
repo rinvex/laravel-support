@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Traits;
 
+use Illuminate\Support\Str;
+
 trait ConsoleTools
 {
     /**
@@ -132,6 +134,21 @@ trait ConsoleTools
     }
 
     /**
+     * Register models into IoC.
+     *
+     * @param array $models
+     *
+     * @return void
+     */
+    protected function registerModels(array $models): void
+    {
+        foreach ($models as $service => $class) {
+            $this->app->singleton($service, $model = $this->app['config'][Str::replaceLast('.', '.models.', $service)]);
+            $model === $class || $this->app->alias($service, $class);
+        }
+    }
+
+    /**
      * Can publish resources.
      *
      * @return bool
@@ -144,12 +161,12 @@ trait ConsoleTools
     /**
      * Can autoload migrations.
      *
-     * @param string $config
+     * @param string $module
      *
      * @return bool
      */
-    protected function autoloadMigrations(string $config): bool
+    protected function autoloadMigrations(string $module): bool
     {
-        return $this->publishesResources() && $this->app['config'][str_replace(['laravel-', '/'], ['', '.'], $config).'.autoload_migrations'];
+        return $this->publishesResources() && $this->app['config'][str_replace(['laravel-', '/'], ['', '.'], $module).'.autoload_migrations'];
     }
 }
