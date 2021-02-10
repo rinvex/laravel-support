@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v5.0.4] - 2021-02-011
+- Add ability for artisan commands to validate answers
+- Add `get_access_area` helper function
+
 ## [v5.0.4] - 2021-02-06
 - Simplify service provider model registration into IoC
 - Enforce consistency
@@ -180,6 +184,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v5.0.5]: https://github.com/rinvex/laravel-support/compare/v5.0.4...v5.0.5
 [v5.0.4]: https://github.com/rinvex/laravel-support/compare/v5.0.3...v5.0.4
 [v5.0.3]: https://github.com/rinvex/laravel-support/compare/v5.0.2...v5.0.3
 [v5.0.2]: https://github.com/rinvex/laravel-support/compare/v5.0.1...v5.0.2
