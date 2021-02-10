@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Facades\Route;
 
 if (! function_exists('extract_title')) {
     /**
@@ -195,5 +196,28 @@ if (! function_exists('array_filter_recursive')) {
         return ! $strOnly ? array_filter($values) : array_filter($values, function ($item) {
             return ! is_null($item) && ! ((is_string($item) || is_array($item)) && empty($item));
         });
+    }
+}
+
+if (! function_exists('get_access_area')) {
+    /**
+     * Get access area of the current route.
+     *
+     * @return string
+     */
+    function get_access_area(): string
+    {
+        $segment = '';
+
+        if ($route = Route::current()) {
+            if ($routeId = $route->getName()) {
+                $segment = Str::before($routeId, '.');
+            } else {
+                $routeId = $route->uri();
+                $segment = Str::before($routeId, '/');
+            }
+        }
+
+        return Str::contains($segment, 'area') ? $segment : 'frontarea';
     }
 }
