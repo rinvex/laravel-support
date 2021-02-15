@@ -31,6 +31,10 @@ trait Macroable
         }
 
         try {
+            if ($resolver = (static::$relationResolvers[get_class($this)][$method] ?? null)) {
+                return $resolver($this);
+            }
+
             return $this->forwardCallTo($this->newQuery(), $method, $parameters);
         } catch (Error | BadMethodCallException $e) {
             if ($method !== 'macroableCall') {
