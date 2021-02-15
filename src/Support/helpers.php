@@ -203,21 +203,36 @@ if (! function_exists('get_access_area')) {
     /**
      * Get access area of the current route.
      *
+     * @throws \Throwable
+     *
      * @return string
      */
     function get_access_area(): string
     {
-        $segment = '';
-
         if ($route = Route::current()) {
-            if ($routeId = $route->getName()) {
-                $segment = Str::before($routeId, '.');
+           // 1. Route matched and is an accessarea request (ex. /adminarea/users)
+            if ($segment = $route->getName()) {
+                $area = Str::before($segment, '.');
             } else {
-                $routeId = $route->uri();
-                $segment = Str::before($routeId, '/');
+                $segment = $route->uri();
+                $area = Str::before($segment, '/');
+            }
+
+            if (! array_key_exists($area, config('cortex.foundation.route.prefix'))) {
+                // 2. Route matched and is an API request (ex. /api/users)
+                $middleware = collect($route->gatherMiddleware())->first(function ($middleware) {
+                    return Str::contains($middleware, 'api:');
+                });
+
+                if ($middlewareGuard = Str::after($middleware, 'api:')) {
+                    $area = $middlewareGuard.'area';
+                }
             }
         }
 
-        return Str::contains($segment, 'area') ? $segment : 'frontarea';
+        // 3. Catch other use cases:
+        // 3.1. Route NOT matched / Wrong URL (ex. 404 error)
+        // 3.2. Route matched but NOT a valid accessarea (could happen if route is mistakenly named, make sure route names contain valid accessarea prefix)
+        return isset($area) && array_key_exists($area, config('cortex.foundation.route.prefix')) ? $area : 'frontarea';
     }
 }
