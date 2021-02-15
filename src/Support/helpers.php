@@ -210,7 +210,7 @@ if (! function_exists('get_access_area')) {
     function get_access_area(): string
     {
         if ($route = Route::current()) {
-           // 1. Route matched and is an accessarea request (ex. /adminarea/users)
+            // 1. Route matched and is an accessarea request (ex. /adminarea/users)
             if ($segment = $route->getName()) {
                 $area = Str::before($segment, '.');
             } else {
