@@ -34,8 +34,8 @@ trait ArtisanCanValidateAnswers
     /**
      * Validate input field.
      *
-     * @param string $field
-     * @param string $value
+     * @param string       $field
+     * @param string       $value
      * @param string|array $rules
      *
      * @return string|null
