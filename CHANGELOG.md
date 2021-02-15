@@ -5,7 +5,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
-## [v5.0.4] - 2021-02-011
+## [v5.0.5] - 2021-02-16
+- Fix macroable conflict with dynamic relationships
+- Refactor `get_access_area` global helper to support all possible scenarios:
+    1. Route matched and is an accessarea request (ex. /adminarea/users)
+    2. Route matched and is an API request (ex. /api/users)
+    3. Catch other use cases:
+       3.1. Route NOT matched / Wrong URL (ex. 404 error)
+       3.2. Route matched but NOT a valid accessarea (could happen if route is mistakenly named, make sure route names contain valid accessarea prefix)
+   
+## [v5.0.4] - 2021-02-11
 - Add ability for artisan commands to validate answers
 - Add `get_access_area` helper function
 
@@ -184,6 +193,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v5.0.6]: https://github.com/rinvex/laravel-support/compare/v5.0.5...v5.0.6
 [v5.0.5]: https://github.com/rinvex/laravel-support/compare/v5.0.4...v5.0.5
 [v5.0.4]: https://github.com/rinvex/laravel-support/compare/v5.0.3...v5.0.4
 [v5.0.3]: https://github.com/rinvex/laravel-support/compare/v5.0.2...v5.0.3
