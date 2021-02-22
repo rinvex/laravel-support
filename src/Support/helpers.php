@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Facades\Route;
 
 if (! function_exists('extract_title')) {
     /**
@@ -41,13 +40,14 @@ if (! function_exists('intend')) {
      */
     function intend(array $arguments, int $status = 302)
     {
-        $redirect = redirect(Arr::pull($arguments, 'url'), $status);
-
-        if (request()->expectsJson()) {
+        if (request()->expectsJson() || request()->isApi()) {
+            $status !== 0 || $status = 401; // If status code = 0, it's authorization error
             $response = collect($arguments['withErrors'] ?? $arguments['with']);
 
-            return response()->json([$response->flatten()->first() ?? 'OK']);
+            return response()->json([$response->flatten()->first() ?? 'OK'], $status);
         }
+
+        $redirect = redirect(Arr::pull($arguments, 'url'), $status);
 
         foreach ($arguments as $key => $value) {
             $redirect = in_array($key, ['home', 'back']) ? $redirect->{$key}() : $redirect->{$key}($value);
