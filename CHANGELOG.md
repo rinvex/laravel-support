@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
     3. Catch other use cases:
        3.1. Route NOT matched / Wrong URL (ex. 404 error)
        3.2. Route matched but NOT a valid accessarea (could happen if route is mistakenly named, make sure route names contain valid accessarea prefix)
-   
+
 ## [v5.0.4] - 2021-02-11
 - Add ability for artisan commands to validate answers
 - Add `get_access_area` helper function
