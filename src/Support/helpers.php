@@ -47,6 +47,7 @@ if (! function_exists('intend')) {
             return response()->json([$response->flatten()->first() ?? 'OK'], $status);
         }
 
+        $status !== 0 || $status = 302; // If status code = 0, it's authorization error
         $redirect = redirect(Arr::pull($arguments, 'url'), $status);
 
         foreach ($arguments as $key => $value) {
