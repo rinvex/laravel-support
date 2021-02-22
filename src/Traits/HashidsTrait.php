@@ -43,4 +43,19 @@ trait HashidsTrait
             ? $this->where($field ?? $this->getKeyName(), optional(Hashids::decode($value))[0])->first()
             : $this->where($field ?? $this->getRouteKeyName(), $value)->first();
     }
+
+    /**
+     * Unhash given value of the model.
+     *
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    public function unhashId($value)
+    {
+        $accessarea = app()->bound('request.accessarea') ? app('request.accessarea') : null;
+        $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
+
+        return in_array($accessarea, $obscure['areas']) ? optional(Hashids::decode($value))[0] : $value;
+    }
 }
