@@ -17,11 +17,9 @@ trait HashidsTrait
      */
     public function getRouteKey()
     {
-        $accessarea = app()->bound('request.accessarea') ? app('request.accessarea') : null;
-
         $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
 
-        return in_array($accessarea, $obscure['areas'])
+        return in_array(request()->accessarea(), $obscure['areas'])
             ? Hashids::encode($this->getAttribute($this->getKeyName()), $obscure['rotate'] ? random_int(1, 999) : 1)
             : $this->getAttribute($this->getRouteKeyName());
     }
@@ -36,10 +34,9 @@ trait HashidsTrait
      */
     public function resolveRouteBinding($value, $field = null)
     {
-        $accessarea = app()->bound('request.accessarea') ? app('request.accessarea') : null;
         $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
 
-        return in_array($accessarea, $obscure['areas'])
+        return in_array(request()->accessarea(), $obscure['areas'])
             ? $this->where($field ?? $this->getKeyName(), optional(Hashids::decode($value))[0])->first()
             : $this->where($field ?? $this->getRouteKeyName(), $value)->first();
     }
@@ -53,9 +50,8 @@ trait HashidsTrait
      */
     public function unhashId($value)
     {
-        $accessarea = app()->bound('request.accessarea') ? app('request.accessarea') : null;
         $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
 
-        return in_array($accessarea, $obscure['areas']) ? optional(Hashids::decode($value))[0] : $value;
+        return in_array(request()->accessarea(), $obscure['areas']) ? optional(Hashids::decode($value))[0] : $value;
     }
 }
