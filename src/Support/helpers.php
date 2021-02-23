@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Facades\Route;
 
 if (! function_exists('extract_title')) {
     /**
@@ -41,13 +40,15 @@ if (! function_exists('intend')) {
      */
     function intend(array $arguments, int $status = 302)
     {
-        $redirect = redirect(Arr::pull($arguments, 'url'), $status);
-
-        if (request()->expectsJson()) {
+        if (request()->expectsJson() || request()->isApi()) {
+            $status !== 0 || $status = 401; // If status code = 0, it's authorization error
             $response = collect($arguments['withErrors'] ?? $arguments['with']);
 
-            return response()->json([$response->flatten()->first() ?? 'OK']);
+            return response()->json([$response->flatten()->first() ?? 'OK'], $status);
         }
+
+        $status !== 0 || $status = 302; // If status code = 0, it's authorization error
+        $redirect = redirect(Arr::pull($arguments, 'url'), $status);
 
         foreach ($arguments as $key => $value) {
             $redirect = in_array($key, ['home', 'back']) ? $redirect->{$key}() : $redirect->{$key}($value);
@@ -196,43 +197,5 @@ if (! function_exists('array_filter_recursive')) {
         return ! $strOnly ? array_filter($values) : array_filter($values, function ($item) {
             return ! is_null($item) && ! ((is_string($item) || is_array($item)) && empty($item));
         });
-    }
-}
-
-if (! function_exists('get_access_area')) {
-    /**
-     * Get access area of the current route.
-     *
-     * @throws \Throwable
-     *
-     * @return string
-     */
-    function get_access_area(): string
-    {
-        if ($route = Route::current()) {
-            // 1. Route matched and is an accessarea request (ex. /adminarea/users)
-            if ($segment = $route->getName()) {
-                $area = Str::before($segment, '.');
-            } else {
-                $segment = $route->uri();
-                $area = Str::before($segment, '/');
-            }
-
-            if (! array_key_exists($area, config('cortex.foundation.route.prefix'))) {
-                // 2. Route matched and is an API request (ex. /api/users)
-                $middleware = collect($route->gatherMiddleware())->first(function ($middleware) {
-                    return Str::contains($middleware, 'api:');
-                });
-
-                if ($middlewareGuard = Str::after($middleware, 'api:')) {
-                    $area = $middlewareGuard.'area';
-                }
-            }
-        }
-
-        // 3. Catch other use cases:
-        // 3.1. Route NOT matched / Wrong URL (ex. 404 error)
-        // 3.2. Route matched but NOT a valid accessarea (could happen if route is mistakenly named, make sure route names contain valid accessarea prefix)
-        return isset($area) && array_key_exists($area, config('cortex.foundation.route.prefix')) ? $area : 'frontarea';
     }
 }

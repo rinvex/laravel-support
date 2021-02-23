@@ -20,7 +20,7 @@ trait HasTimezones
     protected function asDateTime($value)
     {
         $datetime = parent::asDateTime($value);
-        $timezone = app()->bound('request.user') ? optional(app('request.user'))->timezone : null;
+        $timezone = optional(request()->user())->timezone;
 
         if (! $timezone || $timezone === config('app.timezone')) {
             return $datetime;

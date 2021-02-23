@@ -5,7 +5,16 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
-## [v5.0.5] - 2021-02-16
+## [v5.0.7] - 2021-02-24
+- Simplify and utilize request()->user() and request()->guard()
+- Simplify and utilize request()->accessarea()
+- Fix wrong http status code 0 on redirect response
+- Add `unhashId` method to unhash hashids per model
+- Refactor `intend` global helper to support API response better
+- Move `get_access_area` global helper to `Request::getAccessArea` method
+- Add `similar` collection macro
+
+## [v5.0.6] - 2021-02-16
 - Fix macroable conflict with dynamic relationships
 - Refactor `get_access_area` global helper to support all possible scenarios:
     1. Route matched and is an accessarea request (ex. /adminarea/users)
@@ -13,8 +22,8 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
     3. Catch other use cases:
        3.1. Route NOT matched / Wrong URL (ex. 404 error)
        3.2. Route matched but NOT a valid accessarea (could happen if route is mistakenly named, make sure route names contain valid accessarea prefix)
-   
-## [v5.0.4] - 2021-02-11
+
+## [v5.0.5] - 2021-02-11
 - Add ability for artisan commands to validate answers
 - Add `get_access_area` helper function
 
@@ -193,6 +202,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v5.0.7]: https://github.com/rinvex/laravel-support/compare/v5.0.6...v5.0.7
 [v5.0.6]: https://github.com/rinvex/laravel-support/compare/v5.0.5...v5.0.6
 [v5.0.5]: https://github.com/rinvex/laravel-support/compare/v5.0.4...v5.0.5
 [v5.0.4]: https://github.com/rinvex/laravel-support/compare/v5.0.3...v5.0.4
