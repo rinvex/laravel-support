@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v5.0.8] - 2021-02-28
+- Fix user timezone conversion on read/update - ignore current user timezone when using setAttribute (#47)
+
 ## [v5.0.7] - 2021-02-24
 - Simplify and utilize request()->user() and request()->guard()
 - Simplify and utilize request()->accessarea()
@@ -202,6 +205,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v5.0.8]: https://github.com/rinvex/laravel-support/compare/v5.0.7...v5.0.8
 [v5.0.7]: https://github.com/rinvex/laravel-support/compare/v5.0.6...v5.0.7
 [v5.0.6]: https://github.com/rinvex/laravel-support/compare/v5.0.5...v5.0.6
 [v5.0.5]: https://github.com/rinvex/laravel-support/compare/v5.0.4...v5.0.5
