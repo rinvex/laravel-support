@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Providers;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,5 +24,9 @@ class SupportServiceProvider extends ServiceProvider
         Validator::extend('timeoffset', function ($attribute, $value) {
             return array_key_exists($value, timeoffsets());
         }, trans('validation.invalid_timeoffset'));
+
+        Collection::macro('similar', function (Collection $newCollection) {
+            return $newCollection->diff($this)->isEmpty() && $this->diff($newCollection)->isEmpty();
+        });
     }
 }
