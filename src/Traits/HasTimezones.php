@@ -6,7 +6,6 @@ namespace Rinvex\Support\Traits;
 
 use DateTimeZone;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Date;
 
 trait HasTimezones
 {
@@ -21,18 +20,12 @@ trait HasTimezones
     {
         $datetime = parent::asDateTime($value);
         $timezone = optional(request()->user())->timezone;
-
-        if (! $timezone || $timezone === config('app.timezone')) {
-            return $datetime;
-        }
-
         $thisIsUpdateRequest = Arr::first(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 30), function ($trace) {
             return $trace['function'] === 'setAttribute';
         });
 
-        if ($thisIsUpdateRequest) {
-            // When updating attributes, we need to reset user timezone to system timezone before saving!
-            return Date::parse($datetime->toDateTimeString(), $timezone)->setTimezone(config('app.timezone'));
+        if (! $timezone || $timezone === config('app.timezone') || $thisIsUpdateRequest) {
+            return $datetime;
         }
 
         return $datetime->setTimezone(new DateTimeZone($timezone));
