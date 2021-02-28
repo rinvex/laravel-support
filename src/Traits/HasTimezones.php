@@ -20,7 +20,7 @@ trait HasTimezones
     protected function asDateTime($value)
     {
         $datetime = parent::asDateTime($value);
-        $timezone = app()->bound('request.user') ? optional(request()->user())->timezone : null;
+        $timezone = optional(request()->user())->timezone : null;
         $thisIsUpdateRequest = Arr::first(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 30), function ($trace) {
             return $trace['function'] === 'setAttribute';
         });
