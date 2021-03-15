@@ -37,4 +37,18 @@ trait HasTimezones
 
         return $datetime->setTimezone(new DateTimeZone($timezone));
     }
+
+    /**
+     * Get a fresh timestamp for the model.
+     *
+     * @return \Illuminate\Support\Carbon
+     */
+    public function freshTimestamp()
+    {
+        $now = Date::now();
+
+        $timezone = optional(request()->user())->timezone;
+
+        return (! $timezone || $timezone === config('app.timezone')) ? $now : $now->setTimezone($timezone);
+    }
 }
