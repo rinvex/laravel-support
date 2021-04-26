@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v5.0.11] - 2021-04-27
+- Revert custom package to default felixkiss/uniquewith-validator
+- Fix str_replace string conversion issue
+
 ## [v5.0.10] - 2021-03-15
 - Fix timezone issue with created_at, updated_at, and automatically generated timestamp fields
 
@@ -211,6 +215,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v5.0.11]: https://github.com/rinvex/laravel-support/compare/v5.0.10...v5.0.11
 [v5.0.10]: https://github.com/rinvex/laravel-support/compare/v5.0.9...v5.0.10
 [v5.0.9]: https://github.com/rinvex/laravel-support/compare/v5.0.8...v5.0.9
 [v5.0.8]: https://github.com/rinvex/laravel-support/compare/v5.0.7...v5.0.8
