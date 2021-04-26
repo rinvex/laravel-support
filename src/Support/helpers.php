@@ -13,7 +13,7 @@ if (! function_exists('extract_title')) {
      */
     function extract_title(HtmlString $breadcrumbs, string $separator = ' » ')
     {
-        return Str::afterLast(preg_replace('/[\n\r\s]+/', ' ', strip_tags(Str::replaceLast($separator, '', str_replace('</li>', $separator, $breadcrumbs)))), $separator)." {$separator} ".config('app.name');
+        return Str::afterLast(preg_replace('/[\n\r\s]+/', ' ', strip_tags(Str::replaceLast($separator, '', str_replace('</li>', $separator, (string) $breadcrumbs)))), $separator)." {$separator} ".config('app.name');
     }
 }
 
