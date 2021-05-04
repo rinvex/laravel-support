@@ -31,6 +31,11 @@ trait Macroable
         }
 
         try {
+            // Catch non-static calls for static methods
+            if (method_exists(static::class, $method)) {
+                return static::{$method}(...$parameters);
+            }
+
             if ($resolver = (static::$relationResolvers[get_class($this)][$method] ?? null)) {
                 return $resolver($this);
             }
@@ -54,6 +59,7 @@ trait Macroable
     public static function __callStatic($method, $parameters)
     {
         try {
+            // Catch static calls for non-static methods
             return (new static())->{$method}(...$parameters);
         } catch (Exception $e) {
             if ($method !== 'macroableCallStatic') {
