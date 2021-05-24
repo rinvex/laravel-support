@@ -40,15 +40,16 @@ if (! function_exists('intend')) {
      */
     function intend(array $arguments, int $status = 302)
     {
-        if (request()->expectsJson() || request()->isApi()) {
-            $status !== 0 || $status = 401; // If status code = 0, it's authorization error
-            $response = collect($arguments['withErrors'] ?? $arguments['with']);
+        if (request()->expectsJson()) {
+            $messages = collect($arguments['with']);
+            $errors = collect($arguments['withErrors']);
 
-            return response()->json([$response->flatten()->first() ?? 'OK'], $status);
+            return $errors->isNotEmpty() ?
+                response()->json([$errors->flatten()->first() ?: 'Error'], $status ?: 422) :
+                response()->json([$messages->flatten()->first() ?: 'OK'], $status ?: 200);
         }
 
-        $status !== 0 || $status = 302; // If status code = 0, it's authorization error
-        $redirect = redirect(Arr::pull($arguments, 'url'), $status);
+        $redirect = redirect(Arr::pull($arguments, 'url'), in_array($status, [201, 301, 302, 303, 307, 308]) ? $status : 302);
 
         foreach ($arguments as $key => $value) {
             $redirect = in_array($key, ['home', 'back']) ? $redirect->{$key}() : $redirect->{$key}($value);
