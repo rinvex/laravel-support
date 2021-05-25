@@ -41,8 +41,8 @@ if (! function_exists('intend')) {
     function intend(array $arguments, int $status = 302)
     {
         if (request()->expectsJson()) {
-            $messages = collect($arguments['with']);
-            $errors = collect($arguments['withErrors']);
+            $messages = collect($arguments['with'] ?? []);
+            $errors = collect($arguments['withErrors'] ?? []);
 
             return $errors->isNotEmpty() ?
                 response()->json([$errors->flatten()->first() ?: 'Error'], $status ?: 422) :
