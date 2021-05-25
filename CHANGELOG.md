@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v5.0.15] - 2021-05-25
+- Gracefully handle unset array identifiers
+
 ## [v5.0.14] - 2021-05-24
 - Refactor `intend` function to return more accurate HTTP status codes
 
@@ -224,6 +227,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v5.0.15]: https://github.com/rinvex/laravel-support/compare/v5.0.14...v5.0.15
 [v5.0.14]: https://github.com/rinvex/laravel-support/compare/v5.0.13...v5.0.14
 [v5.0.13]: https://github.com/rinvex/laravel-support/compare/v5.0.12...v5.0.13
 [v5.0.12]: https://github.com/rinvex/laravel-support/compare/v5.0.11...v5.0.12
