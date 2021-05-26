@@ -11,7 +11,7 @@ if (! function_exists('extract_title')) {
      *
      * @return string
      */
-    function extract_title(HtmlString $breadcrumbs, string $separator = ' » ')
+    function extract_title($breadcrumbs, string $separator = ' » ')
     {
         return Str::afterLast(preg_replace('/[\n\r\s]+/', ' ', strip_tags(Str::replaceLast($separator, '', str_replace('</li>', $separator, (string) $breadcrumbs)))), $separator)." {$separator} ".config('app.name');
     }
