@@ -34,12 +34,12 @@ if (! function_exists('intend')) {
     /**
      * Return redirect response.
      *
-     * @param array $arguments
-     * @param int   $status
+     * @param array    $arguments
+     * @param int|null $status
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    function intend(array $arguments, int $status = 302)
+    function intend(array $arguments, int $status = null)
     {
         if (request()->expectsJson()) {
             $messages = collect($arguments['with'] ?? []);
