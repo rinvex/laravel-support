@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Str;
-use Illuminate\Support\HtmlString;
 
 if (! function_exists('extract_title')) {
     /**
      * Extract page title from breadcrumbs.
+     *
+     * @param mixed $breadcrumbs
      *
      * @return string
      */
@@ -33,12 +34,12 @@ if (! function_exists('intend')) {
     /**
      * Return redirect response.
      *
-     * @param array $arguments
-     * @param int   $status
+     * @param array    $arguments
+     * @param int|null $status
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    function intend(array $arguments, int $status = 302)
+    function intend(array $arguments, int $status = null)
     {
         if (request()->expectsJson()) {
             $messages = collect($arguments['with'] ?? []);
