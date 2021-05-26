@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Str;
-use Illuminate\Support\HtmlString;
 
 if (! function_exists('extract_title')) {
     /**
      * Extract page title from breadcrumbs.
+     *
+     * @param mixed $breadcrumbs
      *
      * @return string
      */
