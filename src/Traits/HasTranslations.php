@@ -70,11 +70,12 @@ trait HasTranslations
 
         return array_replace(parent::attributesToArray(), array_combine($keys, $values));
     }
-    
+
     /**
      * Merge new translatable with existing translatable on the model.
      *
-     * @param  array  $translatable
+     * @param array $translatable
+     *
      * @return void
      */
     public function mergeTranslatable($translatable)
