@@ -218,13 +218,12 @@ if (! function_exists('array_diff_assoc_recursive')) {
 
         foreach ($array1 as $key => $value) {
             if (is_array($value)) {
-
                 if (! isset($array2[$key]) || ! is_array($array2[$key])) {
                     $difference[$key] = $value;
-                } else if (! empty($subDiff = array_diff_assoc_recursive($value, $array2[$key]))) {
+                } elseif (! empty($subDiff = array_diff_assoc_recursive($value, $array2[$key]))) {
                     $difference[$key] = $onlyDiff ? $subDiff : array_merge($array2[$key], $subDiff);
                 }
-            } else if (! array_key_exists($key, $array2) || $array2[$key] !== $value) {
+            } elseif (! array_key_exists($key, $array2) || $array2[$key] !== $value) {
                 $difference[$key] = $value;
             }
         }
