@@ -201,3 +201,34 @@ if (! function_exists('array_filter_recursive')) {
         });
     }
 }
+
+if (! function_exists('array_diff_assoc_recursive')) {
+    /**
+     * Computes the recursive difference of arrays with additional index check.
+     *
+     * @param array $array1
+     * @param array $array2
+     * @param bool  $onlyDiff
+     *
+     * @return array
+     */
+    function array_diff_assoc_recursive(array $array1, array $array2, bool $onlyDiff = true)
+    {
+        $difference = [];
+
+        foreach ($array1 as $key => $value) {
+            if (is_array($value)) {
+
+                if (! isset($array2[$key]) || ! is_array($array2[$key])) {
+                    $difference[$key] = $value;
+                } else if (! empty($subDiff = array_diff_assoc_recursive($value, $array2[$key]))) {
+                    $difference[$key] = $onlyDiff ? $subDiff : array_merge($array2[$key], $subDiff);
+                }
+            } else if (! array_key_exists($key, $array2) || $array2[$key] !== $value) {
+                $difference[$key] = $value;
+            }
+        }
+
+        return $difference;
+    }
+}
