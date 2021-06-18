@@ -32,29 +32,43 @@ trait HasTranslations
      *
      * @param $key
      *
+     * @throws \Spatie\Translatable\Exceptions\AttributeIsNotTranslatable
+     *
      * @return array
      */
-    public function getTranslations($key): array
+    public function getTranslations(string $key = null): array
     {
-        $this->guardAgainstNonTranslatableAttribute($key);
-        $value = json_decode($this->getAttributes()[$key] ?? '' ?: '{}', true);
+        if ($key !== null) {
+            $this->guardAgainstNonTranslatableAttribute($key);
 
-        // Inject default translation if none supplied
-        if (! is_array($value)) {
-            $oldValue = $value;
+            $value = array_filter(
+                json_decode($this->getAttributes()[$key] ?? '' ?: '{}', true) ?: [],
+                fn ($value) => $value !== null && $value !== ''
+            );
 
-            if ($this->hasSetMutator($key)) {
-                $method = 'set'.Str::studly($key).'Attribute';
-                $value = $this->{$method}($value);
+            // Inject default translation if none supplied
+            if (! is_array($value)) {
+                $oldValue = $value;
+
+                if ($this->hasSetMutator($key)) {
+                    $method = 'set'.Str::studly($key).'Attribute';
+                    $value = $this->{$method}($value);
+                }
+
+                $value = [$locale = app()->getLocale() => $value];
+
+                $this->attributes[$key] = $this->asJson($value);
+                event(new TranslationHasBeenSet($this, $key, $locale, $oldValue, $value));
             }
 
-            $value = [$locale = app()->getLocale() => $value];
-
-            $this->attributes[$key] = $this->asJson($value);
-            event(new TranslationHasBeenSet($this, $key, $locale, $oldValue, $value));
+            return $value;
         }
 
-        return $value;
+        return array_reduce($this->getTranslatableAttributes(), function ($result, $item) {
+            $result[$item] = $this->getTranslations($item);
+
+            return $result;
+        });
     }
 
     /**
@@ -69,5 +83,17 @@ trait HasTranslations
         }, $keys = $this->getTranslatableAttributes());
 
         return array_replace(parent::attributesToArray(), array_combine($keys, $values));
+    }
+
+    /**
+     * Merge new translatable with existing translatable on the model.
+     *
+     * @param array $translatable
+     *
+     * @return void
+     */
+    public function mergeTranslatable($translatable)
+    {
+        $this->translatable = array_merge($this->translatable, $translatable);
     }
 }
