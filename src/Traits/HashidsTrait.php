@@ -17,7 +17,7 @@ trait HashidsTrait
      */
     public function getRouteKey()
     {
-        $accessareas = (array) $this->obscure + ['accessareas' => app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray()];
+        $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
 
         return in_array(request()->accessarea(), $accessareas)
             ? Hashids::encode($this->getAttribute($this->getKeyName()), config('cortex.foundation.obscure'))
@@ -34,7 +34,7 @@ trait HashidsTrait
      */
     public function resolveRouteBinding($value, $field = null)
     {
-        $accessareas = (array) $this->obscure + ['accessareas' => app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray()];
+        $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
 
         return in_array(request()->accessarea(), $accessareas)
             ? $this->where($field ?? $this->getKeyName(), optional(Hashids::decode($value))[0])->first()
@@ -50,7 +50,7 @@ trait HashidsTrait
      */
     public function unhashId($value)
     {
-        $accessareas = (array) $this->obscure + ['accessareas' => app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray()];
+        $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
 
         return in_array(request()->accessarea(), $accessareas) ? optional(Hashids::decode($value))[0] : $value;
     }
