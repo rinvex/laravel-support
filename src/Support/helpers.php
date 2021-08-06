@@ -2,64 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Str;
-
-if (! function_exists('extract_title')) {
-    /**
-     * Extract page title from breadcrumbs.
-     *
-     * @param mixed $breadcrumbs
-     *
-     * @return string
-     */
-    function extract_title($breadcrumbs, string $separator = ' » ')
-    {
-        return Str::afterLast(preg_replace('/[\n\r\s]+/', ' ', strip_tags(Str::replaceLast($separator, '', str_replace('</li>', $separator, (string) $breadcrumbs)))), $separator)." {$separator} ".config('app.name');
-    }
-}
-
-if (! function_exists('domain')) {
-    /**
-     * Return domain host.
-     *
-     * @return string
-     */
-    function domain()
-    {
-        return parse_url(config('app.url'))['host'];
-    }
-}
-
-if (! function_exists('intend')) {
-    /**
-     * Return redirect response.
-     *
-     * @param array    $arguments
-     * @param int|null $status
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     */
-    function intend(array $arguments, int $status = null)
-    {
-        if (request()->expectsJson()) {
-            $messages = collect($arguments['with'] ?? []);
-            $errors = collect($arguments['withErrors'] ?? []);
-
-            return $errors->isNotEmpty() ?
-                response()->json([$errors->flatten()->first() ?: 'Error'], $status ?: 422) :
-                response()->json([$messages->flatten()->first() ?: 'OK'], $status ?: 200);
-        }
-
-        $redirect = redirect(Arr::pull($arguments, 'url'), in_array($status, [201, 301, 302, 303, 307, 308]) ? $status : 302);
-
-        foreach ($arguments as $key => $value) {
-            $redirect = in_array($key, ['home', 'back']) ? $redirect->{$key}() : $redirect->{$key}($value);
-        }
-
-        return $redirect;
-    }
-}
-
 if (! function_exists('mimetypes')) {
     /**
      * Get valid mime types.
@@ -218,13 +160,12 @@ if (! function_exists('array_diff_assoc_recursive')) {
 
         foreach ($array1 as $key => $value) {
             if (is_array($value)) {
-
                 if (! isset($array2[$key]) || ! is_array($array2[$key])) {
                     $difference[$key] = $value;
-                } else if (! empty($subDiff = array_diff_assoc_recursive($value, $array2[$key]))) {
+                } elseif (! empty($subDiff = array_diff_assoc_recursive($value, $array2[$key]))) {
                     $difference[$key] = $onlyDiff ? $subDiff : array_merge($array2[$key], $subDiff);
                 }
-            } else if (! array_key_exists($key, $array2) || $array2[$key] !== $value) {
+            } elseif (! array_key_exists($key, $array2) || $array2[$key] !== $value) {
                 $difference[$key] = $value;
             }
         }

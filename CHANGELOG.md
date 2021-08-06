@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v5.0.19] - 2021-08-06
+- Move application layer helpers to cortex/foundation module helpers (43bf9ad)
+- Refactor accessarea obscure and indexable config options (7891a61)
+- Refactor HashidsTrait ID obscuration (2b4125b)
+- Update composer dependency codedungeon/phpunit-result-printer (08d9601)
+- Rename areas to accessareas (8106779)
+
 ## [v5.0.18] - 2021-06-19
 - Add array_diff_assoc_recursive global helper
 - Allow modules to override core packages rules
@@ -238,6 +245,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v5.0.19]: https://github.com/rinvex/laravel-support/compare/v5.0.18...v5.0.19
 [v5.0.18]: https://github.com/rinvex/laravel-support/compare/v5.0.17...v5.0.18
 [v5.0.17]: https://github.com/rinvex/laravel-support/compare/v5.0.16...v5.0.17
 [v5.0.16]: https://github.com/rinvex/laravel-support/compare/v5.0.15...v5.0.16

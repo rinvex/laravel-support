@@ -17,10 +17,10 @@ trait HashidsTrait
      */
     public function getRouteKey()
     {
-        $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
+        $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
 
-        return in_array(request()->accessarea(), $obscure['areas'])
-            ? Hashids::encode($this->getAttribute($this->getKeyName()), $obscure['rotate'] ? random_int(1, 999) : 1)
+        return in_array(request()->accessarea(), $accessareas)
+            ? Hashids::encode($this->getAttribute($this->getKeyName()), config('cortex.foundation.obscure'))
             : $this->getAttribute($this->getRouteKeyName());
     }
 
@@ -34,9 +34,9 @@ trait HashidsTrait
      */
     public function resolveRouteBinding($value, $field = null)
     {
-        $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
+        $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
 
-        return in_array(request()->accessarea(), $obscure['areas'])
+        return in_array(request()->accessarea(), $accessareas)
             ? $this->where($field ?? $this->getKeyName(), optional(Hashids::decode($value))[0])->first()
             : $this->where($field ?? $this->getRouteKeyName(), $value)->first();
     }
@@ -50,8 +50,8 @@ trait HashidsTrait
      */
     public function unhashId($value)
     {
-        $obscure = property_exists($this, 'obscure') && is_array($this->obscure) ? $this->obscure : config('cortex.foundation.obscure');
+        $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
 
-        return in_array(request()->accessarea(), $obscure['areas']) ? optional(Hashids::decode($value))[0] : $value;
+        return in_array(request()->accessarea(), $accessareas) ? optional(Hashids::decode($value))[0] : $value;
     }
 }
