@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v6.0.0] - 2021-08-22
+- Drop PHP v7 support, and upgrade rinvex package dependencies to next major version
+- Update composer dependencies
+
 ## [v5.0.19] - 2021-08-06
 - Move application layer helpers to cortex/foundation module helpers (43bf9ad)
 - Refactor accessarea obscure and indexable config options (7891a61)
@@ -245,6 +249,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v6.0.0]: https://github.com/rinvex/laravel-support/compare/v5.0.19...v6.0.0
 [v5.0.19]: https://github.com/rinvex/laravel-support/compare/v5.0.18...v5.0.19
 [v5.0.18]: https://github.com/rinvex/laravel-support/compare/v5.0.17...v5.0.18
 [v5.0.17]: https://github.com/rinvex/laravel-support/compare/v5.0.16...v5.0.17
