@@ -32,7 +32,7 @@ trait HasTimezones
 
         if ($thisIsUpdateRequest) {
             // When updating attributes, we need to reset user timezone to system timezone before saving!
-            return Date::parse($datetime->toDateTimeString(), $timezone)->setTimezone(config('app.timezone'));
+            return Date::parse($datetime->toDateTimeString())->setTimezone(config('app.timezone'));
         }
 
         return $datetime->setTimezone(new DateTimeZone($timezone));
