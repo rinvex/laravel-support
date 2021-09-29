@@ -19,23 +19,28 @@ trait HasTimezones
      */
     protected function asDateTime($value)
     {
-        $datetime = parent::asDateTime($value);
+        $datetime = $value;
         $timezone = optional(request()->user())->timezone;
-
-        if (! $timezone || $timezone === config('app.timezone')) {
-            return $datetime;
-        }
 
         $thisIsUpdateRequest = Arr::first(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 30), function ($trace) {
             return $trace['function'] === 'setAttribute';
         });
 
         if ($thisIsUpdateRequest) {
-            // When updating attributes, we need to reset user timezone to system timezone before saving!
-            return Date::parse($datetime->toDateTimeString(), $timezone)->setTimezone(config('app.timezone'));
+            if (is_string($datetime)) {
+                $datetime = Date::parse($datetime, $timezone);
+            }
+
+            return $datetime->setTimezone(config('app.timezone'));
         }
 
-        return $datetime->setTimezone(new DateTimeZone($timezone));
+        $datetime = parent::asDateTime($datetime);
+
+        if (! $timezone || $timezone === config('app.timezone')) {
+            return $datetime;
+        }
+
+        return $datetime->setTimezone($timezone);
     }
 
     /**
