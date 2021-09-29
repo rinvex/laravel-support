@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Rinvex\Support\Traits;
 
-use DateTimeZone;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Date;
 
