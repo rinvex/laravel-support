@@ -41,7 +41,7 @@ trait Macroable
             }
 
             return $this->forwardCallTo($this->newQuery(), $method, $parameters);
-        } catch (Error | BadMethodCallException $e) {
+        } catch (Error|BadMethodCallException $e) {
             if ($method !== 'macroableCall') {
                 return $this->macroableCall($method, $parameters);
             }
