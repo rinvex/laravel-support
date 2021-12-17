@@ -173,3 +173,45 @@ if (! function_exists('array_diff_assoc_recursive')) {
         return $difference;
     }
 }
+
+if (! function_exists('get_str_contains')) {
+    /**
+     * Get str contains the given string.
+     *
+     * @param string          $haystack
+     * @param string|string[] $needles
+     *
+     * @return bool
+     */
+    function get_str_contains($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ($needle !== '' && mb_strpos($haystack, $needle) !== false) {
+                return $needle;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (! function_exists('get_str_endswith')) {
+    /**
+     * Get str ends with the given string.
+     *
+     * @param string          $haystack
+     * @param string|string[] $needles
+     *
+     * @return bool
+     */
+    function get_str_endswith($haystack, $needles)
+    {
+        foreach ((array) $needles as $needle) {
+            if ($needle !== '' && $needle !== null && substr($haystack, -strlen($needle)) === (string) $needle) {
+                return $needle;
+            }
+        }
+
+        return false;
+    }
+}
