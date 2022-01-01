@@ -207,7 +207,7 @@ if (! function_exists('get_str_endswith')) {
     function get_str_endswith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if (! empty($needle) && substr($haystack, -strlen($needle)) === (string) $needle) {
+            if (! empty($needle) && mb_substr($haystack, -mb_strlen($needle)) === (string) $needle) {
                 return $needle;
             }
         }
