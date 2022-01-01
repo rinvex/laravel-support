@@ -186,7 +186,7 @@ if (! function_exists('get_str_contains')) {
     function get_str_contains($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if ($needle !== '' && mb_strpos($haystack, $needle) !== false) {
+            if (! empty($needle) && mb_strpos($haystack, $needle) !== false) {
                 return $needle;
             }
         }
@@ -207,7 +207,7 @@ if (! function_exists('get_str_endswith')) {
     function get_str_endswith($haystack, $needles)
     {
         foreach ((array) $needles as $needle) {
-            if ($needle !== '' && $needle !== null && substr($haystack, -strlen($needle)) === (string) $needle) {
+            if (! empty($needle) && substr($haystack, -strlen($needle)) === (string) $needle) {
                 return $needle;
             }
         }
