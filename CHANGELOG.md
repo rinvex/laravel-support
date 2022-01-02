@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v6.0.3] - 2022-01-02
+- Update str global helpers to check for empty strings
+
 ## [v6.0.2] - 2021-12-20
 - Add two new global helpers get_str_contains & get_str_endswith
 
@@ -255,6 +258,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v6.0.3]: https://github.com/rinvex/laravel-support/compare/v6.0.2...v6.0.3
 [v6.0.2]: https://github.com/rinvex/laravel-support/compare/v6.0.1...v6.0.2
 [v6.0.1]: https://github.com/rinvex/laravel-support/compare/v6.0.0...v6.0.1
 [v6.0.0]: https://github.com/rinvex/laravel-support/compare/v5.0.19...v6.0.0
