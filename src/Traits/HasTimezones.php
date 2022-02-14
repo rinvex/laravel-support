@@ -19,7 +19,7 @@ trait HasTimezones
     protected function asDateTime($value)
     {
         $datetime = $value;
-        $timezone = optional(request()->user())->timezone;
+        $timezone = request()->user()?->timezone;
 
         $thisIsUpdateRequest = Arr::first(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 30), function ($trace) {
             return $trace['function'] === 'setAttribute';
@@ -51,7 +51,7 @@ trait HasTimezones
     {
         $now = Date::now();
 
-        $timezone = optional(request()->user())->timezone;
+        $timezone = request()->user()?->timezone;
 
         return (! $timezone || $timezone === config('app.timezone')) ? $now : $now->setTimezone($timezone);
     }
