@@ -17,6 +17,20 @@
 Install via `composer require rinvex/laravel-support`
 
 
+## Note for Laravel v9
+
+This package requires `felixkiss/uniquewith-validator` dependency, which is not yet compatible with Laravel v9! However as a temporary workaround, add [Laravel Shift](https://github.com/felixkiss/uniquewith-validator/pull/131)'s fork to the `repositories` property of your project root `composer.json`:
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/laravel-shift/uniquewith-validator.git"
+        }
+    ]
+}
+```
+
 ## Usage
 
 ## Support Helpers
