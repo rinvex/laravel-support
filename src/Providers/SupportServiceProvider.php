@@ -17,6 +17,9 @@ class SupportServiceProvider extends ServiceProvider
     {
         // Add strip_tags validation rule
         Validator::extend('strip_tags', function ($attribute, $value) {
+            if(is_null($value)){
+                return true;
+            }
             return strip_tags($value) === $value;
         }, trans('validation.invalid_strip_tags'));
 
