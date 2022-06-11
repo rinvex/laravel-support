@@ -17,7 +17,7 @@ class SupportServiceProvider extends ServiceProvider
     {
         // Add strip_tags validation rule
         Validator::extend('strip_tags', function ($attribute, $value) {
-            return strip_tags($value) === $value;
+            return is_string($value) && strip_tags($value) === $value;
         }, trans('validation.invalid_strip_tags'));
 
         // Add time offset validation rule

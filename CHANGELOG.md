@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v6.1.1] - 2022-06-11
+- Fix null string issue with strip_tags
+
 ## [v6.1.0] - 2022-02-14
 - Update composer dependencies to Laravel v9
 - Use PHP v8 nullsafe operator
@@ -262,6 +265,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v6.1.1]: https://github.com/rinvex/laravel-support/compare/v6.1.0...v6.1.1
 [v6.1.0]: https://github.com/rinvex/laravel-support/compare/v6.0.3...v6.1.0
 [v6.0.3]: https://github.com/rinvex/laravel-support/compare/v6.0.2...v6.0.3
 [v6.0.2]: https://github.com/rinvex/laravel-support/compare/v6.0.1...v6.0.2
