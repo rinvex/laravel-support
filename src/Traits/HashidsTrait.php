@@ -17,10 +17,8 @@ trait HashidsTrait
      */
     public function getRouteKey()
     {
-        $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
-
-        return in_array(request()->accessarea(), $accessareas)
-            ? Hashids::encode($this->getAttribute($this->getKeyName()), config('cortex.foundation.obscure'))
+        return $this->shouldBeHashed()
+            ? Hashids::encode($this->getAttribute($this->getKeyName()), config('cortex.foundation.obscure.numbers'))
             : $this->getAttribute($this->getRouteKeyName());
     }
 
@@ -34,9 +32,7 @@ trait HashidsTrait
      */
     public function resolveRouteBinding($value, $field = null)
     {
-        $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
-
-        return in_array(request()->accessarea(), $accessareas)
+        return $this->shouldBeHashed()
             ? $this->where($field ?? $this->getKeyName(), optional(Hashids::decode($value))[0])->first()
             : $this->where($field ?? $this->getRouteKeyName(), $value)->first();
     }
@@ -50,8 +46,20 @@ trait HashidsTrait
      */
     public function unhashId($value)
     {
+        return $this->shouldBeHashed()
+            ? optional(Hashids::decode($value))[0]
+            : $value;
+    }
+
+    /**
+     * Check if model key should be hashed or not.
+     *
+     * @return bool
+     */
+    protected function shouldBeHashed(): bool
+    {
         $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
 
-        return in_array(request()->accessarea(), $accessareas) ? optional(Hashids::decode($value))[0] : $value;
+        return in_array(request()->accessarea(), $accessareas) && in_array($this->getRouteKeyName(), config('cortex.foundation.obscure.hashed_keys'));
     }
 }
