@@ -5,9 +5,22 @@ declare(strict_types=1);
 namespace Rinvex\Support\Traits;
 
 use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait HashidsTrait
 {
+    /**
+     * Boot the hashids trait for the model.
+     *
+     * @return void
+     */
+    public static function bootHashidsTrait()
+    {
+        static::retrieved(function (self $model) {
+            $model->append('hashid');
+        });
+    }
+
     /**
      * Get the value of the model's route key.
      *
@@ -17,8 +30,7 @@ trait HashidsTrait
      */
     public function getRouteKey()
     {
-        return $this->shouldBeHashed()
-            ? Hashids::encode($this->getAttribute($this->getKeyName()), config('cortex.foundation.obscure.numbers'))
+        return $this->shouldBeHashed() ? $this->getHashid()
             : $this->getAttribute($this->getRouteKeyName());
     }
 
@@ -61,5 +73,27 @@ trait HashidsTrait
         $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
 
         return in_array(request()->accessarea(), $accessareas) && in_array($this->getRouteKeyName(), config('cortex.foundation.obscure.hashed_keys'));
+    }
+
+    /**
+     * Check if model key should be hashed or not.
+     *
+     * @return string
+     */
+    protected function getHashid(): string
+    {
+        return Hashids::encode($this->getAttribute($this->getKeyName()), config('cortex.foundation.obscure.numbers'));
+    }
+
+    /**
+     * Get the model hashid.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function hashid(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getHashid(),
+        );
     }
 }
