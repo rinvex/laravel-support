@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v6.1.4] - 2022-12-30
+- Drop `hashid` model attribute append to fix toArray issues in some scenarios, we can always call it explicitly if needed.
+
 ## [v6.1.3] - 2022-08-30
 - Tweak hashids trait
 
@@ -271,6 +274,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v6.1.4]: https://github.com/rinvex/laravel-support/compare/v6.1.3...v6.1.4
 [v6.1.3]: https://github.com/rinvex/laravel-support/compare/v6.1.2...v6.1.3
 [v6.1.2]: https://github.com/rinvex/laravel-support/compare/v6.1.1...v6.1.2
 [v6.1.1]: https://github.com/rinvex/laravel-support/compare/v6.1.0...v6.1.1
