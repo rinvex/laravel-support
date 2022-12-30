@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v6.1.5] - 2022-12-30
+- Drop felixkiss/uniquewith-validator usage
+  - This is no longer a requirement, and could be included on the project level if needed. 
+
 ## [v6.1.4] - 2022-12-30
 - Drop `hashid` model attribute append to fix toArray issues in some scenarios, we can always call it explicitly if needed.
 
@@ -274,6 +278,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v6.1.5]: https://github.com/rinvex/laravel-support/compare/v6.1.4...v6.1.5
 [v6.1.4]: https://github.com/rinvex/laravel-support/compare/v6.1.3...v6.1.4
 [v6.1.3]: https://github.com/rinvex/laravel-support/compare/v6.1.2...v6.1.3
 [v6.1.2]: https://github.com/rinvex/laravel-support/compare/v6.1.1...v6.1.2
