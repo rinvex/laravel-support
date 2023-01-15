@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v7.0.1] - 2023-01-15
+- Remove unused method call `runningInDevzone`
+
 ## [v7.0.0] - 2023-01-09
 - Tweak artisan commands registration
 - Drop PHP v8.0 support and update composer dependencies
@@ -282,6 +285,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v7.0.1]: https://github.com/rinvex/laravel-support/compare/v7.0.0...v7.0.1
 [v7.0.0]: https://github.com/rinvex/laravel-support/compare/v6.1.5...v7.0.0
 [v6.1.5]: https://github.com/rinvex/laravel-support/compare/v6.1.4...v6.1.5
 [v6.1.4]: https://github.com/rinvex/laravel-support/compare/v6.1.3...v6.1.4
