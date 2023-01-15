@@ -122,7 +122,7 @@ trait ConsoleTools
      */
     protected function publishesResources(): bool
     {
-        return ! $this->app->environment('production') || $this->app->runningInConsole() || $this->runningInDevzone();
+        return ! $this->app->environment('production') || $this->app->runningInConsole();
     }
 
     /**
