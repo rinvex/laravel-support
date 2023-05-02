@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v7.1.0] - 2023-05-02
+- 4eee070: Add support for Laravel v11, and drop support for Laravel v9
+- b0b7595: Upgrade spatie/laravel-schemaless-attributes to v2.4 from v2.3
+- e97387d: Update watson/validating to v8.0 from v7.0
+- 8543fdd: Update phpunit to v10.1 from v9.5
+
 ## [v7.0.1] - 2023-01-15
 - Remove unused method call `runningInDevzone`
 
@@ -285,6 +291,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v7.1.0]: https://github.com/rinvex/laravel-support/compare/v7.0.1...v7.1.0
 [v7.0.1]: https://github.com/rinvex/laravel-support/compare/v7.0.0...v7.0.1
 [v7.0.0]: https://github.com/rinvex/laravel-support/compare/v6.1.5...v7.0.0
 [v6.1.5]: https://github.com/rinvex/laravel-support/compare/v6.1.4...v6.1.5
