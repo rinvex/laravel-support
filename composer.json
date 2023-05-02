@@ -40,19 +40,19 @@
     ],
     "require": {
         "php": "^8.1.0",
-        "illuminate/auth": "^9.0.0 || ^10.0.0",
-        "illuminate/bus": "^9.0.0 || ^10.0.0",
-        "illuminate/contracts": "^9.0.0 || ^10.0.0",
-        "illuminate/http": "^9.0.0 || ^10.0.0",
-        "illuminate/routing": "^9.0.0 || ^10.0.0",
-        "illuminate/support": "^9.0.0 || ^10.0.0",
-        "illuminate/validation": "^9.0.0 || ^10.0.0",
-        "watson/validating": "^7.0.0",
-        "spatie/laravel-schemaless-attributes": "^2.3.0"
+        "illuminate/auth": "^10.0.0 || ^11.0.0",
+        "illuminate/bus": "^10.0.0 || ^11.0.0",
+        "illuminate/contracts": "^10.0.0 || ^11.0.0",
+        "illuminate/http": "^10.0.0 || ^11.0.0",
+        "illuminate/routing": "^10.0.0 || ^11.0.0",
+        "illuminate/support": "^10.0.0 || ^11.0.0",
+        "illuminate/validation": "^10.0.0 || ^11.0.0",
+        "watson/validating": "^8.0.0",
+        "spatie/laravel-schemaless-attributes": "^2.4.0"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": "^0.32.0",
-        "phpunit/phpunit": "^9.5.0"
+        "phpunit/phpunit": "^10.1.0"
     },
     "autoload": {
         "files": [
