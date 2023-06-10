@@ -110,7 +110,7 @@ trait ConsoleTools
     protected function registerModels(array $models): void
     {
         foreach ($models as $service => $class) {
-            $this->app->singleton($service, $model = $this->app['config'][Str::replaceLast('.', '.models.', $service)]);
+            $this->app->singletonIf($service, $model = $this->app['config'][Str::replaceLast('.', '.models.', $service)]);
             $model === $class || $this->app->alias($service, $class);
         }
     }
