@@ -94,9 +94,9 @@ trait ConsoleTools
     /**
      * Publish package lang.
      *
-     * @param string    $package
-     * @param bool      $isModule
-     * @param string    $extends
+     * @param string $package
+     * @param bool   $isModule
+     * @param string $extends
      *
      * @return void
      */
