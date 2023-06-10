@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v7.2.0] - 2023-06-10
+- Add module extensions support to service provider vendor publishing
+- Bind models in IoC service container only if not bound already
+- Remove unused global function array_filter_recursive
+
 ## [v7.1.0] - 2023-05-02
 - 4eee070: Add support for Laravel v11, and drop support for Laravel v9
 - b0b7595: Upgrade spatie/laravel-schemaless-attributes to v2.4 from v2.3
@@ -291,6 +296,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v7.2.0]: https://github.com/rinvex/laravel-support/compare/v7.1.0...v7.2.0
 [v7.1.0]: https://github.com/rinvex/laravel-support/compare/v7.0.1...v7.1.0
 [v7.0.1]: https://github.com/rinvex/laravel-support/compare/v7.0.0...v7.0.1
 [v7.0.0]: https://github.com/rinvex/laravel-support/compare/v6.1.5...v7.0.0
