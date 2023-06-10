@@ -121,29 +121,6 @@ if (! function_exists('array_trim_recursive')) {
     }
 }
 
-if (! function_exists('array_filter_recursive')) {
-    /**
-     * Recursively filter empty strings and null elements of the given array.
-     *
-     * @param array $values
-     * @param bool  $strOnly
-     *
-     * @return mixed
-     */
-    function array_filter_recursive($values, $strOnly = true)
-    {
-        foreach ($values as &$value) {
-            if (is_array($value)) {
-                $value = array_filter_recursive($value);
-            }
-        }
-
-        return ! $strOnly ? array_filter($values) : array_filter($values, function ($item) {
-            return ! is_null($item) && ! ((is_string($item) || is_array($item)) && empty($item));
-        });
-    }
-}
-
 if (! function_exists('array_diff_assoc_recursive')) {
     /**
      * Computes the recursive difference of arrays with additional index check.
