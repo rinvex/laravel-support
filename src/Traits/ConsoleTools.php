@@ -24,7 +24,7 @@ trait ConsoleTools
 
             $migrations = collect($stubs)->flatMap(function ($migration) use ($existing, $namespace) {
                 $sequence = mb_substr(basename($migration), 0, 17);
-                $match = collect($existing)->first(fn($item, $key) => mb_strpos($item, str_replace($sequence, '', basename($migration))) !== false);
+                $match = collect($existing)->first(fn ($item, $key) => mb_strpos($item, str_replace($sequence, '', basename($migration))) !== false);
 
                 return [$migration => $this->app->databasePath('migrations/'.$namespace.'/'.($match ? basename($match) : date('Y_m_d_His', time() + mb_substr($sequence, -6)).str_replace($sequence, '', basename($migration))))];
             })->toArray();
@@ -43,7 +43,7 @@ trait ConsoleTools
      */
     protected function publishConfigFrom(string $path, string $namespace): void
     {
-        ! file_exists($path) || $this->publishes([$path => $this->app->configPath(str_replace('/', '.', $namespace) . '.php')], $namespace . '::config');
+        ! file_exists($path) || $this->publishes([$path => $this->app->configPath(str_replace('/', '.', $namespace).'.php')], $namespace.'::config');
     }
 
     /**
@@ -56,7 +56,7 @@ trait ConsoleTools
      */
     protected function publishViewsFrom(string $path, string $namespace): void
     {
-        ! file_exists($path) || $this->publishes([$path => $this->app->resourcePath('views/vendor/'.$namespace)], $namespace . '::views');
+        ! file_exists($path) || $this->publishes([$path => $this->app->resourcePath('views/vendor/'.$namespace)], $namespace.'::views');
     }
 
     /**
