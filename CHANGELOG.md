@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v7.2.2] - 2023-07-03
+- Update composer dependencies
+
 ## [v7.2.1] - 2023-06-29
 - Refactor resource loading and publishing
 
@@ -299,6 +302,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v7.2.2]: https://github.com/rinvex/laravel-support/compare/v7.2.1...v7.2.2
 [v7.2.1]: https://github.com/rinvex/laravel-support/compare/v7.2.0...v7.2.1
 [v7.2.0]: https://github.com/rinvex/laravel-support/compare/v7.1.0...v7.2.0
 [v7.1.0]: https://github.com/rinvex/laravel-support/compare/v7.0.1...v7.1.0
