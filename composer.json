@@ -40,15 +40,13 @@
     ],
     "require": {
         "php": "^8.1.0",
-        "illuminate/auth": "^10.0.0 || ^11.0.0",
-        "illuminate/bus": "^10.0.0 || ^11.0.0",
-        "illuminate/contracts": "^10.0.0 || ^11.0.0",
-        "illuminate/http": "^10.0.0 || ^11.0.0",
-        "illuminate/routing": "^10.0.0 || ^11.0.0",
+        "illuminate/database": "^10.0.0 || ^11.0.0",
         "illuminate/support": "^10.0.0 || ^11.0.0",
-        "illuminate/validation": "^10.0.0 || ^11.0.0",
-        "watson/validating": "^8.0.0",
-        "spatie/laravel-schemaless-attributes": "^2.4.0"
+        "spatie/laravel-sluggable": "^3.4.0",
+        "spatie/laravel-schemaless-attributes": "^2.4.0",
+        "spatie/laravel-translatable": "^6.0.0",
+        "vinkla/hashids": "^11.0.0",
+        "watson/validating": "^8.0.0"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": "^0.32.0",
