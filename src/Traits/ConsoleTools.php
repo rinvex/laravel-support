@@ -9,6 +9,33 @@ use Illuminate\Support\Str;
 trait ConsoleTools
 {
     /**
+     * Register a view file namespace.
+     *
+     * @override \Illuminate\Support\ServiceProvider::loadViewsFrom This method override views-loading to prepend
+     *           namespaces instead of appending, allowing extensions to have precedence and override module views.
+     *
+     *
+     * @param string|array $path
+     * @param string       $namespace
+     *
+     * @return void
+     */
+    protected function loadViewsFrom($path, $namespace)
+    {
+        $this->callAfterResolving('view', function ($view) use ($path, $namespace) {
+            if (isset($this->app->config['view']['paths']) && is_array($this->app->config['view']['paths'])) {
+                foreach ($this->app->config['view']['paths'] as $viewPath) {
+                    if (is_dir($appPath = $viewPath.'/vendor/'.$namespace)) {
+                        $view->prependNamespace($namespace, $appPath);
+                    }
+                }
+            }
+
+            $view->prependNamespace($namespace, $path);
+        });
+    }
+
+    /**
      * Register migration paths to be published by the publish command.
      *
      * @param string $path

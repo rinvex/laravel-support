@@ -21,18 +21,6 @@ Install via `composer require rinvex/laravel-support`
 
 ## Support Helpers
 
-### `intend()`
-
-The `intend` method returns redirect response:
-```php
-intend([
-    'route' => 'route.name.here',
-    'withErrors' => ['error.message.id' => 'A custom error message'],
-]);
-```
-
-> **Note:** this helper accepts `redirect` methods as it's input keys, such as `withErrors`, `with`, `back`, and `route` ..etc
-
 ### `mimetypes()`
 
 The `mimetypes` method gets valid mime types:
