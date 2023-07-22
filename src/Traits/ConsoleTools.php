@@ -14,7 +14,6 @@ trait ConsoleTools
      * @override \Illuminate\Support\ServiceProvider::loadViewsFrom This method override views-loading to prepend
      *           namespaces instead of appending, allowing extensions to have precedence and override module views.
      *
-     *
      * @param string|array $path
      * @param string       $namespace
      *
