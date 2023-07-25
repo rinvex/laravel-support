@@ -7,6 +7,8 @@ namespace Rinvex\Support\Providers;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Rinvex\Support\Validators\UniqueWithValidator;
+use Illuminate\Support\Facades\Validator as ValidatorFacade;
 
 class SupportServiceProvider extends ServiceProvider
 {
@@ -27,6 +29,12 @@ class SupportServiceProvider extends ServiceProvider
 
         Collection::macro('similar', function (Collection $newCollection) {
             return $newCollection->diff($this)->isEmpty() && $this->diff($newCollection)->isEmpty();
+        });
+
+        // Add support for unique_with validator
+        ValidatorFacade::extend('unique_with', UniqueWithValidator::class.'@validateUniqueWith', trans('validation.unique_with'));
+        ValidatorFacade::replacer('unique_with', function () {
+            return call_user_func_array([new UniqueWithValidator(), 'replaceUniqueWith'], func_get_args());
         });
     }
 }
