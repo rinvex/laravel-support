@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v7.2.4] - 2023-07-25
+- Move unique_with validation rule to rinvex/laravel-support from cortex/foundation
+
 ## [v7.2.3] - 2023-07-22
 - Remove intend() method docs to cortex/foundation
 - Override ServiceProvider::loadViewsFrom to prepend namespaces instead of appending, allowing extensions to have precedence and override parent module views
@@ -306,6 +309,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v7.2.4]: https://github.com/rinvex/laravel-support/compare/v7.2.3...v7.2.4
 [v7.2.3]: https://github.com/rinvex/laravel-support/compare/v7.2.2...v7.2.3
 [v7.2.2]: https://github.com/rinvex/laravel-support/compare/v7.2.1...v7.2.2
 [v7.2.1]: https://github.com/rinvex/laravel-support/compare/v7.2.0...v7.2.1
