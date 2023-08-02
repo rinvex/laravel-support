@@ -22,6 +22,8 @@ trait ConsoleTools
     protected function loadViewsFrom($path, $namespace)
     {
         $this->callAfterResolving('view', function ($view) use ($path, $namespace) {
+            $view->prependNamespace($namespace, $path);
+
             if (isset($this->app->config['view']['paths']) && is_array($this->app->config['view']['paths'])) {
                 foreach ($this->app->config['view']['paths'] as $viewPath) {
                     if (is_dir($appPath = $viewPath.'/vendor/'.$namespace)) {
@@ -29,8 +31,6 @@ trait ConsoleTools
                     }
                 }
             }
-
-            $view->prependNamespace($namespace, $path);
         });
     }
 
