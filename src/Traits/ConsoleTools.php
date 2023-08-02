@@ -27,6 +27,13 @@ trait ConsoleTools
             if (isset($this->app->config['view']['paths']) && is_array($this->app->config['view']['paths'])) {
                 foreach ($this->app->config['view']['paths'] as $viewPath) {
                     if (is_dir($appPath = $viewPath.'/vendor/'.$namespace)) {
+                        $hints = $view->getFinder()->getHints();
+
+                        if ($exists = array_search($appPath, $hints[$namespace])) {
+                            unset($hints[$namespace][$exists]);
+                            $view->getFinder()->replaceNamespace($namespace, array_values($hints[$namespace]));
+                        }
+
                         $view->prependNamespace($namespace, $appPath);
                     }
                 }
