@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v7.2.5] - 2023-08-02
+- If view global path exists in the view hints, remove and prepend to eliminate duplicates, and keep precedence
+- Prepend view global paths to take precedence over modules & extensions
+
 ## [v7.2.4] - 2023-07-25
 - Move unique_with validation rule to rinvex/laravel-support from cortex/foundation
 
@@ -309,6 +313,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v7.2.5]: https://github.com/rinvex/laravel-support/compare/v7.2.4...v7.2.5
 [v7.2.4]: https://github.com/rinvex/laravel-support/compare/v7.2.3...v7.2.4
 [v7.2.3]: https://github.com/rinvex/laravel-support/compare/v7.2.2...v7.2.3
 [v7.2.2]: https://github.com/rinvex/laravel-support/compare/v7.2.1...v7.2.2
