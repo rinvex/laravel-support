@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v7.2.6] - 2023-08-16
+- Register models as singletons by default
+
 ## [v7.2.5] - 2023-08-02
 - If view global path exists in the view hints, remove and prepend to eliminate duplicates, and keep precedence
 - Prepend view global paths to take precedence over modules & extensions
@@ -313,6 +316,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v7.2.6]: https://github.com/rinvex/laravel-support/compare/v7.2.5...v7.2.6
 [v7.2.5]: https://github.com/rinvex/laravel-support/compare/v7.2.4...v7.2.5
 [v7.2.4]: https://github.com/rinvex/laravel-support/compare/v7.2.3...v7.2.4
 [v7.2.3]: https://github.com/rinvex/laravel-support/compare/v7.2.2...v7.2.3
