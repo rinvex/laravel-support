@@ -117,6 +117,7 @@ trait ConsoleTools
         foreach ($models as $service => $class) {
             $this->app->singletonIf($service, $model = $this->app['config'][Str::replaceLast('.', '.models.', $service)]);
             $model === $class || $this->app->alias($service, $class);
+            $this->app->singletonIf($model, $model);
         }
     }
 }
