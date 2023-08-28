@@ -13,6 +13,7 @@ trait ConsoleTools
      *
      * @override \Illuminate\Support\ServiceProvider::loadViewsFrom This method override views-loading to prepend
      *           namespaces instead of appending, allowing extensions to have precedence and override module views.
+     *           We also removed `/vendor` from the `$appPath` variable to simplify the path.
      *
      * @param string|array $path
      * @param string       $namespace
@@ -26,7 +27,7 @@ trait ConsoleTools
 
             if (isset($this->app->config['view']['paths']) && is_array($this->app->config['view']['paths'])) {
                 foreach ($this->app->config['view']['paths'] as $viewPath) {
-                    if (is_dir($appPath = $viewPath.'/vendor/'.$namespace)) {
+                    if (is_dir($appPath = $viewPath.'/'.$namespace)) {
                         $hints = $view->getFinder()->getHints();
 
                         if ($exists = array_search($appPath, $hints[$namespace])) {
