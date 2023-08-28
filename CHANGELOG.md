@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v7.3.0] - 2023-08-28
+- Support multiple themes
+- Remove `/vendor` from namespaced view paths to simplify the path
+
 ## [v7.2.6] - 2023-08-16
 - Register models as singletons by default
 
@@ -316,6 +320,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2016-12-20
 - Tag first release
 
+[v7.3.0]: https://github.com/rinvex/laravel-support/compare/v7.2.6...v7.3.0
 [v7.2.6]: https://github.com/rinvex/laravel-support/compare/v7.2.5...v7.2.6
 [v7.2.5]: https://github.com/rinvex/laravel-support/compare/v7.2.4...v7.2.5
 [v7.2.4]: https://github.com/rinvex/laravel-support/compare/v7.2.3...v7.2.4
