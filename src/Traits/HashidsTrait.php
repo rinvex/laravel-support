@@ -58,7 +58,7 @@ trait HashidsTrait
      */
     protected function shouldBeHashed(): bool
     {
-        $accessareas = (array) $this->obscure + app('accessareas')->where('is_obscured', true)->pluck('slug')->toArray();
+        $accessareas = app('accessareas')->active()->obscured()->keys()->when($this->obscure, fn($collection) => $collection->merge(collect($this->obscure)->intersect(app('accessareas')->active()->keys()))->unique())->toArray();
 
         return in_array(request()->accessarea(), $accessareas) && in_array($this->getRouteKeyName(), config('cortex.foundation.obscure.hashed_keys'));
     }
