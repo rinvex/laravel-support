@@ -27,7 +27,7 @@ trait ConsoleTools
 
             if (isset($this->app->config['view']['paths']) && is_array($this->app->config['view']['paths'])) {
                 foreach ($this->app->config['view']['paths'] as $viewPath) {
-                    if (is_dir($appPath = $viewPath.'/'.$namespace.'/views')) {
+                    if (is_dir($appPath = $viewPath . '/' . $namespace . '/views')) {
                         $hints = $view->getFinder()->getHints();
 
                         if ($exists = array_search($appPath, $hints[$namespace])) {
@@ -53,17 +53,17 @@ trait ConsoleTools
     protected function publishMigrationsFrom(string $path, string $namespace): void
     {
         if (file_exists($path)) {
-            $stubs = $this->app['files']->glob($path.'/*.php');
-            $existing = $this->app['files']->glob($this->app->databasePath('migrations/'.$namespace.'/*.php'));
+            $stubs = $this->app['files']->glob($path . '/*.php');
+            $existing = $this->app['files']->glob($this->app->databasePath('migrations/' . $namespace . '/*.php'));
 
             $migrations = collect($stubs)->flatMap(function ($migration) use ($existing, $namespace) {
                 $sequence = mb_substr(basename($migration), 0, 17);
-                $match = collect($existing)->first(fn ($item, $key) => mb_strpos($item, str_replace($sequence, '', basename($migration))) !== false);
+                $match = collect($existing)->first(fn($item, $key) => mb_strpos($item, str_replace($sequence, '', basename($migration))) !== false);
 
-                return [$migration => $this->app->databasePath('migrations/'.$namespace.'/'.($match ? basename($match) : date('Y_m_d_His', time() + mb_substr($sequence, -6)).str_replace($sequence, '', basename($migration))))];
+                return [$migration => $this->app->databasePath('migrations/' . $namespace . '/' . ($match ? basename($match) : date('Y_m_d_His', time() + mb_substr($sequence, -6)) . str_replace($sequence, '', basename($migration))))];
             })->toArray();
 
-            $this->publishes($migrations, $namespace.'::migrations');
+            $this->publishes($migrations, $namespace . '::migrations');
         }
     }
 
@@ -77,7 +77,7 @@ trait ConsoleTools
      */
     protected function publishConfigFrom(string $path, string $namespace): void
     {
-        ! file_exists($path) || $this->publishes([$path => $this->app->configPath(str_replace('/', '.', $namespace).'.php')], $namespace.'::config');
+        !file_exists($path) || $this->publishes([$path => $this->app->configPath(str_replace('/', '.', $namespace) . '.php')], $namespace . '::config');
     }
 
     /**
@@ -90,7 +90,7 @@ trait ConsoleTools
      */
     protected function publishViewsFrom(string $path, string $namespace): void
     {
-        ! file_exists($path) || $this->publishes([$path => $this->app->resourcePath('views/vendor/'.$namespace)], $namespace.'::views');
+        !file_exists($path) || $this->publishes([$path => $this->app->resourcePath('views/vendor/' . $namespace)], $namespace . '::views');
     }
 
     /**
@@ -103,7 +103,7 @@ trait ConsoleTools
      */
     protected function publishTranslationsFrom(string $path, string $namespace): void
     {
-        ! file_exists($path) || $this->publishes([$path => $this->app->resourcePath('lang/vendor/'.$namespace)], $namespace.'::lang');
+        !file_exists($path) || $this->publishes([$path => $this->app->resourcePath('lang/vendor/' . $namespace)], $namespace . '::lang');
     }
 
     /**
@@ -121,4 +121,138 @@ trait ConsoleTools
             $this->app->singletonIf($model, $model);
         }
     }
+
+    /**
+     * Publish package migrations.
+     *
+     * @return void
+     */
+    protected function publishesMigrations(string $package, bool $isModule = false): void
+    {
+        if ($this->publishesResources()) {
+            return;
+        }
+
+        $namespace = str_replace('laravel-', '', $package);
+        $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
+        $basePath = $isModule ? $this->app->path($package)
+            : $this->app->basePath('vendor/' . $package);
+
+        if (file_exists($path = $basePath . '/database/migrations')) {
+            $stubs = $this->app['files']->glob($path . '/*.php');
+            $existing = $this->app['files']->glob($this->app->databasePath('migrations/' . $package . '/*.php'));
+
+            $migrations = collect($stubs)->flatMap(function ($migration) use ($existing, $package) {
+                $sequence = mb_substr(basename($migration), 0, 17);
+                $match = collect($existing)->first(function ($item, $key) use ($migration, $sequence) {
+                    return mb_strpos($item, str_replace($sequence, '', basename($migration))) !== false;
+                });
+
+                return [$migration => $this->app->databasePath('migrations/' . $package . '/' . ($match ? basename($match) : date('Y_m_d_His', time() + mb_substr($sequence, -6)) . str_replace($sequence, '', basename($migration))))];
+            })->toArray();
+
+            $this->publishes($migrations, $namespace . '-migrations');
+        }
+    }
+
+    /**
+     * Publish package config.
+     *
+     * @return void
+     */
+    protected function publishesConfig(string $package, bool $isModule = false): void
+    {
+        if ($this->publishesResources()) {
+            return;
+        }
+
+        $namespace = str_replace('laravel-', '', $package);
+        $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
+        $basePath = $isModule ? $this->app->path($package)
+            : $this->app->basePath('vendor/' . $package);
+
+        if (file_exists($path = $basePath . '/config/config.php')) {
+            $this->publishes([$path => $this->app->configPath(str_replace('-', '.', $namespace) . '.php')], $namespace . '-config');
+        }
+    }
+
+    /**
+     * Publish package views.
+     *
+     * @return void
+     */
+    protected function publishesViews(string $package, bool $isModule = false): void
+    {
+        if ($this->publishesResources()) {
+            return;
+        }
+
+        $namespace = str_replace('laravel-', '', $package);
+        $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
+        $basePath = $isModule ? $this->app->path($package)
+            : $this->app->basePath('vendor/' . $package);
+
+        if (file_exists($path = $basePath . '/resources/views')) {
+            $this->publishes([$path => $this->app->resourcePath('views/vendor/' . $package)], $namespace . '-views');
+        }
+    }
+
+    /**
+     * Publish package lang.
+     *
+     * @return void
+     */
+    protected function publishesLang(string $package, bool $isModule = false): void
+    {
+        if ($this->publishesResources()) {
+            return;
+        }
+
+        $namespace = str_replace('laravel-', '', $package);
+        $namespace = str_replace(['/', '\\', '.', '_'], '-', $namespace);
+        $basePath = $isModule ? $this->app->path($package)
+            : $this->app->basePath('vendor/' . $package);
+
+        if (file_exists($path = $basePath . '/resources/lang')) {
+            $this->publishes([$path => $this->app->resourcePath('lang/vendor/' . $package)], $namespace . '-lang');
+        }
+    }
+
+    /**
+     * Register console commands.
+     *
+     * @return void
+     */
+    protected function registerCommands(): void
+    {
+        // Register artisan commands
+        foreach ($this->commands as $key => $value) {
+            $this->app->singleton($value, $key);
+        }
+
+        $this->commands(array_values($this->commands));
+    }
+
+    /**
+     * Can publish resources.
+     *
+     * @return bool
+     */
+    protected function publishesResources(): bool
+    {
+        return !$this->app->environment('production');
+    }
+
+    /**
+     * Can autoload migrations.
+     *
+     * @param string $config
+     *
+     * @return bool
+     */
+    protected function autoloadMigrations(string $config): bool
+    {
+        return !$this->app->environment('production') && $this->app['config'][$config . '.autoload_migrations'];
+    }
+
 }
