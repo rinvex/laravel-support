@@ -21,7 +21,7 @@ trait ValidatingTrait
      */
     public function mergeRules(array $rules)
     {
-        $this->rules += $rules;
+        $this->rules = array_merge($this->rules, $rules);
 
         return $this;
     }
